@@ -5545,6 +5545,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get importAsCopy => 'Добавить копию';
 
   @override
+  String get routineExerciseNote => 'Routine note';
+
+  @override
+  String get importRoutineNotes => 'Add missing routine notes';
+
+  @override
+  String get routineNotesAdded => 'Routine notes added';
+
+  @override
   String get importOwned => 'Уже есть';
 
   @override

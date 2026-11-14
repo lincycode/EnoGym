@@ -2305,5 +2305,8 @@
   "exerciseCopyName": "{name}（副本）",
   "ownLightPalette": "浅色配色",
   "ownPaletteSage": "鼠尾草白",
-  "ownPaletteOriginal": "原版暖米灰"
+  "ownPaletteOriginal": "原版暖米灰",
+  "routineExerciseNote": "训练方案动作备注",
+  "importRoutineNotes": "补充缺失的动作备注",
+  "routineNotesAdded": "已补充训练方案动作备注"
 }

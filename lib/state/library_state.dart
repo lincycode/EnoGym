@@ -396,6 +396,7 @@ mixin LibraryState on FitCore {
     modeOverride.remove(id);
     for (final r in routines) {
       r.exerciseIds.remove(id);
+      r.exerciseNotes.remove(id);
     }
     favorites.remove(id);
     _persist();

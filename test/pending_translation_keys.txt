@@ -101,3 +101,6 @@ effortDisplayHint
 ownLightPalette
 ownPaletteSage
 ownPaletteOriginal
+routineExerciseNote
+importRoutineNotes
+routineNotesAdded

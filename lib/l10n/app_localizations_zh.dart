@@ -5151,6 +5151,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get importAsCopy => '添加为副本';
 
   @override
+  String get routineExerciseNote => '训练方案动作备注';
+
+  @override
+  String get importRoutineNotes => '补充缺失的动作备注';
+
+  @override
+  String get routineNotesAdded => '已补充训练方案动作备注';
+
+  @override
   String get importOwned => '已拥有';
 
   @override
