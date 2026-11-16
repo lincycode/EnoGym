@@ -34,6 +34,13 @@ two lines instead of three.
 `assets/art/hand-gripper.txt` is an original EnoGym illustration of a spring
 gripper in its open and closed positions, under CC BY-SA 4.0.
 
+**From Open Exercise Art.** `reverse-pec-deck` and `bayesian-cable-curl` start from
+single drawings of [Open Exercise Art](https://github.com/AlexMollard/Open-Exercise-Art)
+by Alex Mollard, under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/):
+`reverse-pec-deck.svg` and `one-arm-cable-curl.svg`. The other two frames of each were made
+by moving the arms and the machine parts of that same drawing; the body and the line weight
+are unchanged.
+
 ## Fonts
 
 Nunito, by the Nunito Project Authors, under the SIL Open Font License

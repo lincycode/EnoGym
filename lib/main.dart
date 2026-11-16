@@ -11,6 +11,8 @@ import 'services/nutrition_widgets.dart';
 import 'services/live_workout.dart';
 import 'services/local_store.dart';
 import 'services/media_store.dart';
+import 'services/app_icon.dart';
+import 'services/nfc_tags.dart';
 import 'services/graphics_mode.dart';
 import 'services/rest_alarm.dart';
 import 'services/screen_awake.dart';
@@ -36,7 +38,9 @@ Future<void> main() async {
   await RestAlarm.instance.init();
   await RestAlarm.instance.retireVibratingChannels();
   await GraphicsMode.load();
+  AppIcon.load();
   fit.loadFromStore();
+  NfcTags.load();
   fit.syncPhotoReminder();
   fit.syncMeasureReminder();
   fit.syncTrainReminder();

@@ -1,5 +1,21 @@
 [
   {
+    "version": "2.3.0",
+    "date": "2026-11-15",
+    "zh": [
+      "可用 NFC 贴纸打开当天计划，支持更换桌面图标和系统主题图标。",
+      "训练中可逐组对比同方案的上次用时，动作详情页调整设置入口与历史记录；方案备注可随方案分享。",
+      "新增 Liftosaur、JEFIT 和 StrongLifts 5×5 导入，CSV 可按日期和类别导出；空方案分组随备份保留。",
+      "支持粘贴 AI 生成的营养信息并确认后保存，修正复合动作的肌群归类。"
+    ],
+    "en": [
+      "Open today's plan with an NFC tag and choose a launcher icon, including themed icons.",
+      "Compare workout timing with the last session of the same routine, view streamlined exercise details, and share routine exercise notes.",
+      "Import Liftosaur, JEFIT and StrongLifts 5×5 histories, choose CSV categories and dates, and retain empty routine groups in backups.",
+      "Review pasted AI-generated nutrition data before saving, and use corrected muscle mappings for compound lifts."
+    ]
+  },
+  {
     "version": "2.2.0",
     "date": "2026-11-12",
     "zh": [

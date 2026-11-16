@@ -3484,6 +3484,179 @@ class AppLocalizationsId extends AppLocalizations {
   String get exerciseSettings => 'Pengaturan gerakan ini';
 
   @override
+  String get exerciseSettingsHint => 'Istirahat, progresi, pemanasan, dan lainnya';
+
+  @override
+  String get appIcon => 'Ikon aplikasi';
+
+  @override
+  String get appIconHint => 'Tampilan GymMane di layar utama';
+
+  @override
+  String get appIconColors => 'Warna';
+
+  @override
+  String get appIconDesigns => 'Desain';
+
+  @override
+  String get appIconNote => 'Layar utama mungkin butuh beberapa detik untuk menampilkan perubahan.';
+
+  @override
+  String get appIconDefault => 'Asli';
+
+  @override
+  String get appIconLight => 'Terang';
+
+  @override
+  String get appIconSand => 'Pasir';
+
+  @override
+  String get appIconGraphite => 'Grafit';
+
+  @override
+  String get appIconSage => 'Sage';
+
+  @override
+  String get appIconNight => 'Malam';
+
+  @override
+  String get appIconMaterial => 'Material';
+
+  @override
+  String get appIconMedal => 'Medali';
+
+  @override
+  String get appIconGlass => 'Kaca';
+
+  @override
+  String get appIconStopwatch => 'Stopwatch';
+
+  @override
+  String get appIconMarble => 'Marmer';
+
+  @override
+  String get nfcRow => 'Stiker NFC';
+
+  @override
+  String get nfcRowHint => 'Tempelkan ponsel untuk melihat latihan hari ini';
+
+  @override
+  String get nfcTitle => 'Stiker NFC';
+
+  @override
+  String get nfcSubtitle => 'Satu stiker untuk seminggu penuh';
+
+  @override
+  String get nfcPoint1 => 'Latihan hari ini, siap';
+
+  @override
+  String get nfcPoint1Body =>
+      'Tempelkan ponsel dan rutinitas hari ini terbuka dengan latihannya. Kamu mulai saat sudah siap.';
+
+  @override
+  String get nfcPoint2 => 'Saat hari istirahat, ia memberi tahu';
+
+  @override
+  String get nfcPoint2Body =>
+      'Kalau hari ini hari istirahat, kamu akan melihatnya, dan tetap bisa latihan kalau mau.';
+
+  @override
+  String get nfcPoint3 => 'Ditulis sekali saja';
+
+  @override
+  String get nfcPoint3Body => 'Ubah rencanamu kapan saja: stiker selalu membuka yang dijadwalkan hari itu.';
+
+  @override
+  String get nfcUse => 'Gunakan stiker';
+
+  @override
+  String get nfcUseHint => 'Saat mati, menempelkan stiker tidak melakukan apa-apa';
+
+  @override
+  String get nfcWrite => 'Tulis stiker';
+
+  @override
+  String get nfcOn => 'Aktif';
+
+  @override
+  String get nfcOff => 'Mati';
+
+  @override
+  String get todayRestBody => 'Istirahat juga bagian dari rencana. Ototmu tumbuh saat kamu pulih.';
+
+  @override
+  String get todayNotNow => 'Nanti saja';
+
+  @override
+  String get nfcWaitTitle => 'Tempelkan stiker ke ponsel';
+
+  @override
+  String get nfcWaitBody => 'Tahan di bagian belakang ponsel, dekat kamera, sampai bergetar.';
+
+  @override
+  String get nfcTip => 'Stiker NTAG213, 215, atau 216 apa pun bisa. Paling umum dan harganya sangat murah.';
+
+  @override
+  String get nfcDoneTitle => 'Stiker siap';
+
+  @override
+  String get nfcDoneBody => 'Tempel di tempat yang kamu lihat saat datang: tas gym, botol, atau loker.';
+
+  @override
+  String get nfcOffTitle => 'NFC mati';
+
+  @override
+  String get nfcOffBody => 'Nyalakan NFC di pengaturan ponsel untuk menulis stiker.';
+
+  @override
+  String get nfcOpenSettings => 'Buka pengaturan';
+
+  @override
+  String get nfcFailTitle => 'Gagal menulis';
+
+  @override
+  String get nfcErrLocked => 'Stiker ini terkunci dan tidak bisa ditulis.';
+
+  @override
+  String get nfcErrSmall => 'Tidak muat di stiker ini. Pakai NTAG213 atau yang lebih besar.';
+
+  @override
+  String get nfcErrLost => 'Stiker bergeser sebelum selesai. Tahan diam dan coba lagi.';
+
+  @override
+  String get nfcErrUnsupported => 'Stiker ini tidak didukung. Pakai NTAG213, 215, atau 216.';
+
+  @override
+  String get nfcRetry => 'Coba lagi';
+
+  @override
+  String get raceTitle => 'Lawan sesi terakhirmu';
+
+  @override
+  String raceSince(String date) {
+    return 'Dibandingkan dengan $date';
+  }
+
+  @override
+  String get raceAhead => 'Kamu unggul';
+
+  @override
+  String get raceBehind => 'Masih mengejar';
+
+  @override
+  String get raceEven => 'Imbang';
+
+  @override
+  String get raceToday => 'Hari ini';
+
+  @override
+  String get raceThen => 'Saat itu';
+
+  @override
+  String get raceHint =>
+      'Hanya set yang sama yang dibandingkan: kalau kamu sudah 2, dengan 2 set pertamamu hari itu.';
+
+  @override
   String get placeActiveNow => 'Kamu di sini';
 
   @override
@@ -5257,13 +5430,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get importAsCopy => 'Tambah sebagai salinan';
 
   @override
-  String get routineExerciseNote => 'Routine note';
+  String get routineExerciseNote => 'Catatan rutinitas';
 
   @override
-  String get importRoutineNotes => 'Add missing routine notes';
+  String get importRoutineNotes => 'Tambahkan catatan rutinitas yang belum ada';
 
   @override
-  String get routineNotesAdded => 'Routine notes added';
+  String get routineNotesAdded => 'Catatan rutinitas ditambahkan';
 
   @override
   String get importOwned => 'Sudah milikmu';
@@ -6296,6 +6469,15 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get reportShareCsv => 'Ekspor CSV';
+
+  @override
+  String get reportChooseCsv => 'Pilih file CSV yang ingin dibagikan.';
+
+  @override
+  String get reportWeighIns => 'Penimbangan';
+
+  @override
+  String get reportSessionDetails => 'Detail sesi latihan';
 
   @override
   String get reportShareCsvBoth => 'Ekspor CSV (latihan dan nutrisi)';
@@ -7848,4 +8030,265 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get ownPaletteOriginal => 'Original warm neutral';
+
+  @override
+  String get foodAiRow => 'Fill in with an AI';
+
+  @override
+  String get foodAiRowHint => 'From a label, a screenshot or a link';
+
+  @override
+  String get foodAiTitle => 'Food with AI';
+
+  @override
+  String get foodAiHow =>
+      'Copy the request and paste it into any chatbot together with a photo of the nutrition label, a screenshot of the product or a link to it. Then paste its answer here.';
+
+  @override
+  String get foodAiCheck => 'The form fills itself in. Check the values against the label before saving.';
+
+  @override
+  String get foodAiFill => 'Fill in the food';
+
+  @override
+  String get foodAiFilled => 'Food filled in';
+
+  @override
+  String get foodAiFilledHint => 'Check the values before saving';
+
+  @override
+  String get fastAdd => 'Add a past fast';
+
+  @override
+  String get fastAddTitle => 'Add a fast';
+
+  @override
+  String get fastEditTitle => 'Edit fast';
+
+  @override
+  String get fastStartRow => 'Start';
+
+  @override
+  String get fastEndRow => 'End';
+
+  @override
+  String get fastEndedAt => 'When did you end it?';
+
+  @override
+  String fastLasted(String time) {
+    return 'Lasted $time';
+  }
+
+  @override
+  String get fastErrFuture => 'The end can\'t be later than now';
+
+  @override
+  String get fastErrOrder => 'The end has to come after the start';
+
+  @override
+  String get fastErrShort => 'A fast lasts at least 10 minutes';
+
+  @override
+  String get fastErrOverlap => 'It overlaps another fast';
+
+  @override
+  String get fastSaved => 'Fast saved';
+
+  @override
+  String get fastAdjust => 'Adjust';
+
+  @override
+  String get keepCounting => 'Keep counting';
+
+  @override
+  String get keepCountingHint => 'It beeps at your time and keeps going until you stop it';
+
+  @override
+  String get holdOvertime => 'Extra time';
+
+  @override
+  String get pairSetting => 'Pair of dumbbells';
+
+  @override
+  String get pairSettingHint => 'Log the weight of one. Volume counts both.';
+
+  @override
+  String get helpCommon => 'Common questions';
+
+  @override
+  String get helpQuestions => 'Questions';
+
+  @override
+  String get helpNoResults => 'Nothing matches that. Try another word';
+
+  @override
+  String get helpLbQ => 'Can I use lb for just one exercise?';
+
+  @override
+  String helpLbA(String option) {
+    return 'Yes. During the workout, open the exercise’s ⋯ menu and pick “$option”.';
+  }
+
+  @override
+  String get helpSupersetQ => 'How do I make a superset?';
+
+  @override
+  String get helpSupersetA => 'In the routine editor, tap the link between two exercises to chain them.';
+
+  @override
+  String get helpRangeQ => 'How do I set a rep range like 8-12?';
+
+  @override
+  String get helpRangeA => 'In the routine editor, long press the reps.';
+
+  @override
+  String get helpRestQ => 'Can each exercise have its own rest?';
+
+  @override
+  String helpRestA(String settings, String rest, String section) {
+    return 'Yes: open the exercise › $settings › $rest. Your default rest is in Settings › $section.';
+  }
+
+  @override
+  String get helpSidesQ => 'How do I log left and right separately?';
+
+  @override
+  String helpSidesA(String settings, String sides) {
+    return 'Open the exercise › $settings › $sides.';
+  }
+
+  @override
+  String get helpPairQ => 'Dumbbells: do I log one or both?';
+
+  @override
+  String helpPairA(String pair) {
+    return 'One. Turn on “$pair” in the exercise’s settings and the volume counts both.';
+  }
+
+  @override
+  String get helpKeepQ => 'Can a timed set keep going past the time?';
+
+  @override
+  String helpKeepA(String keep) {
+    return 'Yes: turn on “$keep” in the exercise’s settings. It beeps at your time and keeps counting until you stop it.';
+  }
+
+  @override
+  String get helpDayOffQ => 'How do I mark a rest, sick or travel day?';
+
+  @override
+  String get helpDayOffA =>
+      'On Home, long press the day in your week. Your streak and the reminder leave it alone.';
+
+  @override
+  String get helpImportQ => 'Can I bring my workouts from Hevy, Strong or another app?';
+
+  @override
+  String helpImportA(String section, String row) {
+    return 'Yes: Settings › $section › $row. It also reads FitNotes, Fitbod, JEFIT, StrongLifts, Liftosaur and Lyfta.';
+  }
+
+  @override
+  String get helpPhoneQ => 'How do I move my data to a new phone?';
+
+  @override
+  String helpPhoneA(String section, String import) {
+    return 'Export a copy in Settings › $section and open it on the new phone with “$import”.';
+  }
+
+  @override
+  String get helpSlowQ => 'The app feels slow on my phone';
+
+  @override
+  String helpSlowA(String section, String perf, String lite) {
+    return 'Settings › $section › $perf › $lite. It turns off blur, the heaviest part.';
+  }
+
+  @override
+  String get helpPlatesQ => 'How many plates go on the bar?';
+
+  @override
+  String helpPlatesA(String tool, String places) {
+    return 'Use “$tool” in Tools. Your gym’s plates and bar are set in “$places”.';
+  }
+
+  @override
+  String get helpRaceQ => 'How do I compare with my last workout?';
+
+  @override
+  String helpRaceA(String race) {
+    return 'During the workout, tap the pill at the top: “$race”.';
+  }
+
+  @override
+  String get helpFastQ => 'I forgot to end my fast';
+
+  @override
+  String helpFastA(String adjust) {
+    return 'End it and tap “$adjust” on the notice, or tap the fast in the fasting sheet to change its times.';
+  }
+
+  @override
+  String get helpGo => 'Show me';
+
+  @override
+  String get helpHomeOrderQ => 'Can I change the order of Home?';
+
+  @override
+  String helpHomeOrderA(String section, String row) {
+    return 'Yes: Settings › $section › “$row”. Hold and drag the sections, or turn off the ones you don’t use.';
+  }
+
+  @override
+  String get helpCustomQ => 'Can I create my own exercise?';
+
+  @override
+  String helpCustomA(String button) {
+    return 'Yes: in Exercises, tap “$button”. You pick its name, muscles and equipment, and it works like any other.';
+  }
+
+  @override
+  String get helpWarmupQ => 'Can the app add warm-up sets for me?';
+
+  @override
+  String helpWarmupA(String settings, String warm, String tool) {
+    return 'Yes: open the exercise › $settings › “$warm”. To work them out by hand, use “$tool” in Tools.';
+  }
+
+  @override
+  String get helpPassQ => 'Can I keep my gym membership card in the app?';
+
+  @override
+  String helpPassA(String row, String section) {
+    return 'Yes: “$row” in Settings › $section. It shows the barcode or QR code to scan at the door.';
+  }
+
+  @override
+  String get helpStepsQ => 'Why don’t I see my steps?';
+
+  @override
+  String helpStepsA(String row, String section) {
+    return 'Steps are read from Health Connect, which comes with Android 14 and later. On older phones it isn’t available. If you have it, turn on “$row” in Settings › $section.';
+  }
+
+  @override
+  String get helpNfcQ => 'Can I start my workout by tapping my phone?';
+
+  @override
+  String helpNfcA(String row, String section) {
+    return 'Yes, with an NFC sticker: “$row” in Settings › $section. Stick it at the gym and tapping it opens today’s workout.';
+  }
+
+  @override
+  String get helpCleanQ => 'How do I make the Nutrition screen cleaner?';
+
+  @override
+  String helpCleanA(String button) {
+    return 'In Nutrition, tap the sliders button at the top (“$button”) and turn off whatever you don’t track.';
+  }
+
+  @override
+  String alsoWorksMuscles(String muscles) {
+    return 'Also works $muscles';
+  }
 }

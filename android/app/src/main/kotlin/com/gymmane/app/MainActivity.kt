@@ -160,6 +160,8 @@ class MainActivity : FlutterActivity() {
         HealthBridge.attach(this, MethodChannel(messenger, HealthBridge.CHANNEL))
         BackupBridge.attach(this, MethodChannel(messenger, BackupBridge.CHANNEL))
         SoundBridge.attach(this, MethodChannel(messenger, SoundBridge.CHANNEL))
+        AppIconBridge.attach(this, MethodChannel(messenger, AppIconBridge.CHANNEL))
+        NfcBridge.attach(this, MethodChannel(messenger, NfcBridge.CHANNEL))
         VoiceBridge.attach(this, MethodChannel(messenger, VoiceBridge.CHANNEL))
         UpdateBridge.attach(this, MethodChannel(messenger, UpdateBridge.CHANNEL))
         WearSurfaces.attach(this, MethodChannel(messenger, WearSurfaces.CHANNEL))
@@ -258,6 +260,7 @@ class MainActivity : FlutterActivity() {
         RefreshingWidgetProvider.channel = null
         rotaryChannel = null
         openChannel = null
+        NfcBridge.detach(this)
         LiveNotifier.dart = null
         HealthBridge.channel = null
         if (isFinishing) LiveNotifier.cancel(this)
@@ -280,7 +283,18 @@ class MainActivity : FlutterActivity() {
         incomingChannel?.invokeMethod("incoming", text)
     }
 
+    override fun onResume() {
+        super.onResume()
+        NfcBridge.resume(this)
+    }
+
+    override fun onPause() {
+        NfcBridge.pause(this)
+        super.onPause()
+    }
+
     private fun takeOpen(intent: Intent?): String? {
+        if (NfcBridge.isToday(intent)) return "nfc/today"
         val route = intent?.getStringExtra(OPEN_EXTRA) ?: return null
         intent.removeExtra(OPEN_EXTRA)
         return route
@@ -288,6 +302,7 @@ class MainActivity : FlutterActivity() {
 
     private fun takeIncoming(intent: Intent?): String? {
         if (intent == null || intent.action == Intent.ACTION_VIEW_PERMISSION_USAGE) return null
+        if (intent.action == android.nfc.NfcAdapter.ACTION_NDEF_DISCOVERED) return null
         val text = when (intent.action) {
             Intent.ACTION_VIEW -> intent.data?.let { readText(it) }
             Intent.ACTION_SEND -> streamOf(intent)?.let { readText(it) }

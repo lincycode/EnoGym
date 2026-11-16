@@ -3409,6 +3409,176 @@ class AppLocalizationsZh extends AppLocalizations {
   String get exerciseSettings => '此动作的设置';
 
   @override
+  String get exerciseSettingsHint => '休息、渐进、热身等';
+
+  @override
+  String get appIcon => '应用图标';
+
+  @override
+  String get appIconHint => 'EnoGym 在主屏幕上的样子';
+
+  @override
+  String get appIconColors => '颜色';
+
+  @override
+  String get appIconDesigns => '设计';
+
+  @override
+  String get appIconNote => '主屏幕可能需要几秒钟才会显示变化。';
+
+  @override
+  String get appIconDefault => '默认';
+
+  @override
+  String get appIconLight => '浅色';
+
+  @override
+  String get appIconSand => '沙色';
+
+  @override
+  String get appIconGraphite => '石墨';
+
+  @override
+  String get appIconSage => '鼠尾草';
+
+  @override
+  String get appIconNight => '夜色';
+
+  @override
+  String get appIconMaterial => 'Material';
+
+  @override
+  String get appIconMedal => '奖牌';
+
+  @override
+  String get appIconGlass => '玻璃';
+
+  @override
+  String get appIconStopwatch => '秒表';
+
+  @override
+  String get appIconMarble => '大理石';
+
+  @override
+  String get nfcRow => 'NFC 贴纸';
+
+  @override
+  String get nfcRowHint => '手机靠近即可查看今天的训练';
+
+  @override
+  String get nfcTitle => 'NFC 贴纸';
+
+  @override
+  String get nfcSubtitle => '一张贴纸管一整周';
+
+  @override
+  String get nfcPoint1 => '今天的训练，马上就绪';
+
+  @override
+  String get nfcPoint1Body => '把手机靠近，今天的训练计划就会连同动作一起打开。准备好了再开始。';
+
+  @override
+  String get nfcPoint2 => '休息日会告诉你';
+
+  @override
+  String get nfcPoint2Body => '如果今天是休息日你会看到，想练也照样可以练。';
+
+  @override
+  String get nfcPoint3 => '只需写入一次';
+
+  @override
+  String get nfcPoint3Body => '随时修改计划：贴纸总会打开当天安排的内容。';
+
+  @override
+  String get nfcUse => '使用贴纸';
+
+  @override
+  String get nfcUseHint => '关闭时，靠近贴纸不会有任何反应';
+
+  @override
+  String get nfcWrite => '写入贴纸';
+
+  @override
+  String get nfcOn => '开启';
+
+  @override
+  String get nfcOff => '关闭';
+
+  @override
+  String get todayRestBody => '休息也是计划的一部分。肌肉在你恢复时生长。';
+
+  @override
+  String get todayNotNow => '以后再说';
+
+  @override
+  String get nfcWaitTitle => '把贴纸靠近手机';
+
+  @override
+  String get nfcWaitBody => '贴在手机背面靠近摄像头的位置，直到手机振动。';
+
+  @override
+  String get nfcTip => '任何 NTAG213、215 或 216 贴纸都可以。它们最常见，价格也很便宜。';
+
+  @override
+  String get nfcDoneTitle => '贴纸已就绪';
+
+  @override
+  String get nfcDoneBody => '贴在你到达时能看到的地方：健身包、水瓶或储物柜。';
+
+  @override
+  String get nfcOffTitle => 'NFC 已关闭';
+
+  @override
+  String get nfcOffBody => '请在手机设置中打开 NFC 以写入贴纸。';
+
+  @override
+  String get nfcOpenSettings => '打开设置';
+
+  @override
+  String get nfcFailTitle => '无法写入';
+
+  @override
+  String get nfcErrLocked => '这张贴纸已锁定，无法写入。';
+
+  @override
+  String get nfcErrSmall => '这张贴纸放不下。请使用 NTAG213 或更大的贴纸。';
+
+  @override
+  String get nfcErrLost => '贴纸在完成前移动了。请保持不动再试一次。';
+
+  @override
+  String get nfcErrUnsupported => '不支持这张贴纸。请使用 NTAG213、215 或 216。';
+
+  @override
+  String get nfcRetry => '再试一次';
+
+  @override
+  String get raceTitle => '与上次训练相比';
+
+  @override
+  String raceSince(String date) {
+    return '与 $date 相比';
+  }
+
+  @override
+  String get raceAhead => '你领先了';
+
+  @override
+  String get raceBehind => '还在追赶';
+
+  @override
+  String get raceEven => '不相上下';
+
+  @override
+  String get raceToday => '今天';
+
+  @override
+  String get raceThen => '当时';
+
+  @override
+  String get raceHint => '只比较相同的组：如果你做了 2 组，就和那天的前 2 组比较。';
+
+  @override
   String get placeActiveNow => '你在这里';
 
   @override
@@ -6163,6 +6333,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get reportShareCsv => '导出 CSV';
 
   @override
+  String get reportChooseCsv => '选择要分享的 CSV 文件。';
+
+  @override
+  String get reportWeighIns => '体重记录';
+
+  @override
+  String get reportSessionDetails => '训练详情';
+
+  @override
   String get reportShareCsvBoth => '导出 CSV（训练与营养）';
 
   @override
@@ -7638,6 +7817,265 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get ownPaletteOriginal => '原版暖米灰';
+
+  @override
+  String get foodAiRow => '用 AI 填写';
+
+  @override
+  String get foodAiRowHint => '可提供营养标签、截图或链接';
+
+  @override
+  String get foodAiTitle => '用 AI 填写食物';
+
+  @override
+  String get foodAiHow => '复制提示词，把它和营养标签照片、产品截图或链接一起发给聊天机器人，再将回复粘贴到这里。';
+
+  @override
+  String get foodAiCheck => '表单会自动填入数值。保存前请对照营养标签核对。';
+
+  @override
+  String get foodAiFill => '填入食物信息';
+
+  @override
+  String get foodAiFilled => '已填入食物信息';
+
+  @override
+  String get foodAiFilledHint => '保存前请核对数值';
+
+  @override
+  String get fastAdd => '补记断食';
+
+  @override
+  String get fastAddTitle => '添加断食记录';
+
+  @override
+  String get fastEditTitle => '编辑断食记录';
+
+  @override
+  String get fastStartRow => '开始时间';
+
+  @override
+  String get fastEndRow => '结束时间';
+
+  @override
+  String get fastEndedAt => '何时结束？';
+
+  @override
+  String fastLasted(String time) {
+    return '持续了 $time';
+  }
+
+  @override
+  String get fastErrFuture => '结束时间不能晚于现在';
+
+  @override
+  String get fastErrOrder => '结束时间必须晚于开始时间';
+
+  @override
+  String get fastErrShort => '断食时长至少为 10 分钟';
+
+  @override
+  String get fastErrOverlap => '与另一条断食记录重叠';
+
+  @override
+  String get fastSaved => '已保存断食记录';
+
+  @override
+  String get fastAdjust => '调整时间';
+
+  @override
+  String get keepCounting => '到目标后继续计时';
+
+  @override
+  String get keepCountingHint => '到达目标时间时会提醒，并继续计时，直到手动停止。';
+
+  @override
+  String get holdOvertime => '超过目标的时间';
+
+  @override
+  String get pairSetting => '成对哑铃';
+
+  @override
+  String get pairSettingHint => '记录单只重量，训练量按两只计算。';
+
+  @override
+  String get helpCommon => '常见问题';
+
+  @override
+  String get helpQuestions => '问题';
+
+  @override
+  String get helpNoResults => '没有匹配结果，试试其他关键词';
+
+  @override
+  String get helpLbQ => '可以只给某个动作使用磅吗？';
+
+  @override
+  String helpLbA(String option) {
+    return '可以。训练时打开该动作的「⋯」菜单，选择「$option」。';
+  }
+
+  @override
+  String get helpSupersetQ => '怎么设置超级组？';
+
+  @override
+  String get helpSupersetA => '在训练方案编辑器里，点两个动作之间的连接按钮，把它们连起来。';
+
+  @override
+  String get helpRangeQ => '怎么设置 8–12 这样的次数范围？';
+
+  @override
+  String get helpRangeA => '在训练方案编辑器里长按次数。';
+
+  @override
+  String get helpRestQ => '每个动作可以单独设置休息时间吗？';
+
+  @override
+  String helpRestA(String settings, String rest, String section) {
+    return '可以。打开动作详情 › $settings › $rest。默认休息时间在「设置 › $section」里。';
+  }
+
+  @override
+  String get helpSidesQ => '怎么分别记录左右侧？';
+
+  @override
+  String helpSidesA(String settings, String sides) {
+    return '打开动作详情 › $settings › $sides。';
+  }
+
+  @override
+  String get helpPairQ => '哑铃重量填单只还是两只？';
+
+  @override
+  String helpPairA(String pair) {
+    return '填单只。在动作设置里开启「$pair」，训练量就会按两只计算。';
+  }
+
+  @override
+  String get helpKeepQ => '计时组达到目标后还能继续计时吗？';
+
+  @override
+  String helpKeepA(String keep) {
+    return '可以。在动作设置里开启「$keep」，达到目标后会提醒，计时持续到手动停止。';
+  }
+
+  @override
+  String get helpDayOffQ => '怎么标记休息、生病或出行？';
+
+  @override
+  String get helpDayOffA => '在首页长按周历里的日期。标记后不会中断连续训练，也不会触发当天提醒。';
+
+  @override
+  String get helpImportQ => '可以导入 Hevy、Strong 或其他 App 的训练记录吗？';
+
+  @override
+  String helpImportA(String section, String row) {
+    return '可以。打开「设置 › $section › $row」。也支持 FitNotes、Fitbod、JEFIT、StrongLifts、Liftosaur 和 Lyfta。';
+  }
+
+  @override
+  String get helpPhoneQ => '怎么把数据迁移到新手机？';
+
+  @override
+  String helpPhoneA(String section, String import) {
+    return '在旧手机的「设置 › $section」导出备份，再用新手机上的「$import」打开。';
+  }
+
+  @override
+  String get helpSlowQ => 'App 在我的手机上有点卡';
+
+  @override
+  String helpSlowA(String section, String perf, String lite) {
+    return '前往「设置 › $section › $perf」，关闭「$lite」以减少渲染开销。';
+  }
+
+  @override
+  String get helpPlatesQ => '杠铃两侧应该加多少杠铃片？';
+
+  @override
+  String helpPlatesA(String tool, String places) {
+    return '在工具里打开「$tool」。可在「$places」设置你常用的杠铃和杠铃片。';
+  }
+
+  @override
+  String get helpRaceQ => '怎么和上一次训练比用时？';
+
+  @override
+  String helpRaceA(String race) {
+    return '训练时点顶部的「$race」。';
+  }
+
+  @override
+  String get helpFastQ => '忘记结束断食怎么办？';
+
+  @override
+  String helpFastA(String adjust) {
+    return '结束断食后在提示中点「$adjust」，也可以打开断食面板，点对应记录修改时间。';
+  }
+
+  @override
+  String get helpGo => '前往';
+
+  @override
+  String get helpHomeOrderQ => '可以调整首页模块顺序吗？';
+
+  @override
+  String helpHomeOrderA(String section, String row) {
+    return '可以。前往「设置 › $section › $row」，长按拖动模块，或关闭不用的模块。';
+  }
+
+  @override
+  String get helpCustomQ => '可以自定义动作吗？';
+
+  @override
+  String helpCustomA(String button) {
+    return '可以。在动作库点「$button」，填写名称、肌群和器械，就能像内置动作一样使用。';
+  }
+
+  @override
+  String get helpWarmupQ => 'App 可以自动添加热身组吗？';
+
+  @override
+  String helpWarmupA(String settings, String warm, String tool) {
+    return '可以。打开动作详情 › $settings › $warm。如需手动计算，可在工具里打开「$tool」。';
+  }
+
+  @override
+  String get helpPassQ => '可以把健身房会员卡放进 App 吗？';
+
+  @override
+  String helpPassA(String row, String section) {
+    return '可以。在「设置 › $section」打开「$row」，入场时出示条形码或二维码。';
+  }
+
+  @override
+  String get helpStepsQ => '为什么看不到步数？';
+
+  @override
+  String helpStepsA(String row, String section) {
+    return '步数通过 Android 的 Health Connect 读取。设备支持时，可在「设置 › $section」开启「$row」。';
+  }
+
+  @override
+  String get helpNfcQ => '可以碰一下手机就打开训练吗？';
+
+  @override
+  String helpNfcA(String row, String section) {
+    return '可以。在「设置 › $section」打开「$row」。用手机碰一下写好的 NFC 贴纸，即可打开当天训练。';
+  }
+
+  @override
+  String get helpCleanQ => '怎么精简饮食页面？';
+
+  @override
+  String helpCleanA(String button) {
+    return '在饮食页点顶部的「$button」，关闭用不到的记录项目。';
+  }
+
+  @override
+  String alsoWorksMuscles(String muscles) {
+    return '辅助肌群 $muscles';
+  }
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -11050,6 +11488,176 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get exerciseSettings => '此動作的設定';
 
   @override
+  String get exerciseSettingsHint => '休息、漸進、熱身等';
+
+  @override
+  String get appIcon => '應用程式圖示';
+
+  @override
+  String get appIconHint => 'GymMane 在主畫面上的樣子';
+
+  @override
+  String get appIconColors => '顏色';
+
+  @override
+  String get appIconDesigns => '設計';
+
+  @override
+  String get appIconNote => '主畫面可能需要幾秒鐘才會顯示變更。';
+
+  @override
+  String get appIconDefault => '原版';
+
+  @override
+  String get appIconLight => '淺色';
+
+  @override
+  String get appIconSand => '沙色';
+
+  @override
+  String get appIconGraphite => '石墨';
+
+  @override
+  String get appIconSage => '鼠尾草';
+
+  @override
+  String get appIconNight => '夜色';
+
+  @override
+  String get appIconMaterial => 'Material';
+
+  @override
+  String get appIconMedal => '獎牌';
+
+  @override
+  String get appIconGlass => '玻璃';
+
+  @override
+  String get appIconStopwatch => '碼錶';
+
+  @override
+  String get appIconMarble => '大理石';
+
+  @override
+  String get nfcRow => 'NFC 貼紙';
+
+  @override
+  String get nfcRowHint => '手機靠近即可查看今天的訓練';
+
+  @override
+  String get nfcTitle => 'NFC 貼紙';
+
+  @override
+  String get nfcSubtitle => '一張貼紙管一整週';
+
+  @override
+  String get nfcPoint1 => '今天的訓練，馬上就緒';
+
+  @override
+  String get nfcPoint1Body => '把手機靠近，今天的訓練計畫就會連同動作一起開啟。準備好了再開始。';
+
+  @override
+  String get nfcPoint2 => '休息日會告訴你';
+
+  @override
+  String get nfcPoint2Body => '如果今天是休息日你會看到，想練也照樣可以練。';
+
+  @override
+  String get nfcPoint3 => '只需寫入一次';
+
+  @override
+  String get nfcPoint3Body => '隨時修改計畫：貼紙總會開啟當天安排的內容。';
+
+  @override
+  String get nfcUse => '使用貼紙';
+
+  @override
+  String get nfcUseHint => '關閉時，靠近貼紙不會有任何反應';
+
+  @override
+  String get nfcWrite => '寫入貼紙';
+
+  @override
+  String get nfcOn => '開啟';
+
+  @override
+  String get nfcOff => '關閉';
+
+  @override
+  String get todayRestBody => '休息也是計畫的一部分。肌肉在你恢復時生長。';
+
+  @override
+  String get todayNotNow => '以後再說';
+
+  @override
+  String get nfcWaitTitle => '把貼紙靠近手機';
+
+  @override
+  String get nfcWaitBody => '貼在手機背面靠近相機的位置，直到手機震動。';
+
+  @override
+  String get nfcTip => '任何 NTAG213、215 或 216 貼紙都可以。它們最常見，價格也很便宜。';
+
+  @override
+  String get nfcDoneTitle => '貼紙已就緒';
+
+  @override
+  String get nfcDoneBody => '貼在你抵達時看得到的地方：健身包、水瓶或置物櫃。';
+
+  @override
+  String get nfcOffTitle => 'NFC 已關閉';
+
+  @override
+  String get nfcOffBody => '請在手機設定中開啟 NFC 以寫入貼紙。';
+
+  @override
+  String get nfcOpenSettings => '開啟設定';
+
+  @override
+  String get nfcFailTitle => '無法寫入';
+
+  @override
+  String get nfcErrLocked => '這張貼紙已鎖定，無法寫入。';
+
+  @override
+  String get nfcErrSmall => '這張貼紙放不下。請使用 NTAG213 或更大的貼紙。';
+
+  @override
+  String get nfcErrLost => '貼紙在完成前移動了。請保持不動再試一次。';
+
+  @override
+  String get nfcErrUnsupported => '不支援這張貼紙。請使用 NTAG213、215 或 216。';
+
+  @override
+  String get nfcRetry => '再試一次';
+
+  @override
+  String get raceTitle => '與上次訓練相比';
+
+  @override
+  String raceSince(String date) {
+    return '與 $date 相比';
+  }
+
+  @override
+  String get raceAhead => '你領先了';
+
+  @override
+  String get raceBehind => '還在追趕';
+
+  @override
+  String get raceEven => '不相上下';
+
+  @override
+  String get raceToday => '今天';
+
+  @override
+  String get raceThen => '當時';
+
+  @override
+  String get raceHint => '只比較相同的組：如果你做了 2 組，就和那天的前 2 組比較。';
+
+  @override
   String get placeActiveNow => '你在這裡';
 
   @override
@@ -12797,6 +13405,15 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get importAsCopy => '新增為副本';
 
   @override
+  String get routineExerciseNote => '訓練計畫備註';
+
+  @override
+  String get importRoutineNotes => '新增缺少的訓練計畫備註';
+
+  @override
+  String get routineNotesAdded => '已新增訓練計畫備註';
+
+  @override
   String get importOwned => '已擁有';
 
   @override
@@ -13798,6 +14415,15 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get reportShareCsv => '匯出 CSV';
+
+  @override
+  String get reportChooseCsv => '選擇要分享的 CSV 檔案。';
+
+  @override
+  String get reportWeighIns => '體重紀錄';
+
+  @override
+  String get reportSessionDetails => '訓練詳情';
 
   @override
   String get reportShareCsvBoth => '匯出 CSV（訓練與營養）';
