@@ -2349,10 +2349,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tileAddWeight => '记一下';
 
   @override
-  String get heatToneTitle => '热力图颜色';
+  String get heatToneTitle => '出勤图颜色';
 
   @override
-  String get heatToneHint => '只改变网格和人体的配色。';
+  String get heatToneHint => '出勤网格按此配色显示，肌肉受训热力图使用固定配色。';
 
   @override
   String get thisWeekTitle => '本周';

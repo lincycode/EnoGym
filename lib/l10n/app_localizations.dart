@@ -4505,13 +4505,13 @@ abstract class AppLocalizations {
   /// No description provided for @heatToneTitle.
   ///
   /// In en, this message translates to:
-  /// **'Heat colour'**
+  /// **'Activity colors'**
   String get heatToneTitle;
 
   /// No description provided for @heatToneHint.
   ///
   /// In en, this message translates to:
-  /// **'Only changes how the grid and the body are painted.'**
+  /// **'Choose activity grid colors. Muscle heatmap colors stay fixed.'**
   String get heatToneHint;
 
   /// No description provided for @thisWeekTitle.

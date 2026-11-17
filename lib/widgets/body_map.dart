@@ -85,7 +85,10 @@ Color heatLevelColor(GymColors gc, int level, {String? tone}) {
   return ramp[(level - 1).clamp(0, heatLevels - 1)];
 }
 
-Color heatColor(GymColors gc, double v) => heatLevelColor(gc, heatLevel(v));
+// Training volume has a fixed warm scale, independent of attendance colors.
+Color muscleHeatLevelColor(GymColors gc, int level) => heatLevelColor(gc, level, tone: 'ember');
+
+Color muscleHeatColor(GymColors gc, double v) => muscleHeatLevelColor(gc, heatLevel(v));
 
 String heatToken(Map<String, double> intensity) {
   final keys = intensity.keys.toList()..sort();
@@ -130,7 +133,7 @@ class BodyHeatMap extends StatelessWidget {
       painter: BodyPainter(
         gc: gc,
         token: _token,
-        color: (id) => heatColor(gc, intensity[id] ?? 0),
+        color: (id) => muscleHeatColor(gc, intensity[id] ?? 0),
         outline: focus,
       ),
     );
@@ -138,10 +141,11 @@ class BodyHeatMap extends StatelessWidget {
 }
 
 Color recoveryColor(GymColors gc, double recovered) {
-  final v = recovered.clamp(0.0, 1.0);
-  final fresh = Color.lerp(idleMuscle(gc), gc.sage, 0.62)!;
-  if (v < 0.5) return Color.lerp(gc.danger, gc.warn, v / 0.5)!;
-  return Color.lerp(gc.warn, fresh, (v - 0.5) / 0.5)!;
+  final ramp = heatRamp(gc, 'green');
+  final position = recovered.clamp(0.0, 1.0) * (ramp.length - 1);
+  final lower = position.floor();
+  final upper = (lower + 1).clamp(0, ramp.length - 1);
+  return Color.lerp(ramp[lower], ramp[upper], position - lower)!;
 }
 
 class BodyRecoveryMap extends StatelessWidget {
@@ -180,7 +184,7 @@ class BodyHeatArt extends StatelessWidget {
       painter: BodyPainter(
         gc: gc,
         token: heatToken(intensity),
-        color: (id) => heatColor(gc, intensity[id] ?? 0),
+        color: (id) => muscleHeatColor(gc, intensity[id] ?? 0),
       ),
     );
   }

@@ -2440,10 +2440,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tileAddWeight => 'Add yours';
 
   @override
-  String get heatToneTitle => 'Heat colour';
+  String get heatToneTitle => 'Activity colors';
 
   @override
-  String get heatToneHint => 'Only changes how the grid and the body are painted.';
+  String get heatToneHint => 'Choose activity grid colors. Muscle heatmap colors stay fixed.';
 
   @override
   String get thisWeekTitle => 'This week';

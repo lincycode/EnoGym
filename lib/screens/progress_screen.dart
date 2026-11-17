@@ -1376,7 +1376,7 @@ class _MuscleMapCardState extends State<_MuscleMapCard> {
                 child: Container(
                   height: 7,
                   decoration: BoxDecoration(
-                    color: heatLevelColor(gc, i),
+                    color: muscleHeatLevelColor(gc, i),
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
@@ -1446,7 +1446,7 @@ class _MuscleMapCardState extends State<_MuscleMapCard> {
                         Container(
                           width: 10,
                           height: 10,
-                          decoration: BoxDecoration(color: heatColor(gc, heat[id] ?? 0), shape: BoxShape.circle),
+                          decoration: BoxDecoration(color: muscleHeatColor(gc, heat[id] ?? 0), shape: BoxShape.circle),
                         ),
                         const SizedBox(width: 10),
                         Expanded(
@@ -1461,7 +1461,7 @@ class _MuscleMapCardState extends State<_MuscleMapCard> {
                             child: LinearProgressIndicator(
                               value: heat[id] ?? 0,
                               minHeight: 5,
-                              color: heatColor(gc, heat[id] ?? 0),
+                              color: muscleHeatColor(gc, heat[id] ?? 0),
                               backgroundColor: gc.bgRaised2,
                             ),
                           ),
@@ -1670,11 +1670,12 @@ class _MuscleMapCardState extends State<_MuscleMapCard> {
   Widget _recoveryReadout(GymColors gc, String id, double value) {
     final toMid = value < 0.5 ? fit.hoursUntilRecovery(id, 0.5) : null;
     final toReady = value < 0.8 ? fit.hoursUntilRecovery(id, 0.8) : null;
-    final (label, color) = value < 0.5
-        ? (t.recoveryTired, gc.danger)
+    final color = recoveryColor(gc, value);
+    final label = value < 0.5
+        ? t.recoveryTired
         : value < 0.8
-            ? (t.recoveryStateMid, gc.warn)
-            : (t.recoveryStateReady, gc.sage);
+            ? t.recoveryStateMid
+            : t.recoveryStateReady;
     String when(int h) => h < 48 ? '$h h' : '${(h / 24).round()} ${t.unitDays}';
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Row(children: [
@@ -1683,7 +1684,7 @@ class _MuscleMapCardState extends State<_MuscleMapCard> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
           decoration: BoxDecoration(color: color.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(100)),
-          child: Text(label, style: AppTheme.f(11, weight: FontWeight.w700, color: color)),
+          child: Text(label, style: AppTheme.f(11, weight: FontWeight.w700, color: gc.text)),
         ),
         const Spacer(),
         Text('${(value * 100).round()}%', style: AppTheme.d(20, weight: FontWeight.w800, color: gc.text)),
@@ -1703,9 +1704,9 @@ class _MuscleMapCardState extends State<_MuscleMapCard> {
         return SizedBox(
           height: 14,
           child: Stack(clipBehavior: Clip.none, children: [
-            zone(0, 0.5, gc.danger),
-            zone(0.5, 0.8, gc.warn),
-            zone(0.8, 1, gc.sage),
+            zone(0, 0.5, recoveryColor(gc, 0)),
+            zone(0.5, 0.8, recoveryColor(gc, 0.5)),
+            zone(0.8, 1, recoveryColor(gc, 1)),
             TweenAnimationBuilder<double>(
               tween: Tween(end: value.clamp(0.0, 1.0)),
               duration: const Duration(milliseconds: 420),
@@ -1744,7 +1745,7 @@ class _MuscleMapCardState extends State<_MuscleMapCard> {
       Container(
         width: 10,
         height: 10,
-        decoration: BoxDecoration(color: heatColor(gc, heat), shape: BoxShape.circle),
+        decoration: BoxDecoration(color: muscleHeatColor(gc, heat), shape: BoxShape.circle),
       ),
       const SizedBox(width: 8),
       Text(t.muscle(id), style: AppTheme.s(13, weight: FontWeight.w600, color: gc.text)),

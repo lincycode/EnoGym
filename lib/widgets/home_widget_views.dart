@@ -484,7 +484,7 @@ class BodyWidgetView extends StatelessWidget {
                     width: 12,
                     height: 6,
                     decoration: BoxDecoration(
-                      color: heatLevelColor(gc, i),
+                      color: muscleHeatLevelColor(gc, i),
                       borderRadius: BorderRadius.circular(2),
                     ),
                   ),

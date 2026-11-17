@@ -224,7 +224,7 @@ class _TimelineScreenState extends State<TimelineScreen> {
               child: Container(
                 height: 6,
                 decoration: BoxDecoration(
-                  color: heatLevelColor(gc, i),
+                  color: muscleHeatLevelColor(gc, i),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
