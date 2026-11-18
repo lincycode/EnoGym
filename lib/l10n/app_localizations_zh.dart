@@ -7529,6 +7529,38 @@ class AppLocalizationsZh extends AppLocalizations {
   String get webPhoneGuide => '如何设置';
 
   @override
+  String get webSignOut => '退出登录';
+
+  @override
+  String get wearSyncTitle => '手机';
+
+  @override
+  String get wearSyncNever => '尚未同步';
+
+  @override
+  String wearSyncLast(String when) {
+    return '已于 $when 同步';
+  }
+
+  @override
+  String wearSyncWaiting(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 次训练等待发送到手机');
+    return '$_temp0';
+  }
+
+  @override
+  String get wearSyncNow => '立即同步';
+
+  @override
+  String get wearSyncHow => '在手机上开启 设置 › Wear OS 手表，并在两边都打开 GymMane。';
+
+  @override
+  String get routinesOrder => '调整训练计划顺序';
+
+  @override
+  String get routinesOrderHint => '拖动以更改显示顺序。';
+
+  @override
   String get webPhoneOff => '这台服务器关闭了手机同步';
 
   @override
@@ -8076,6 +8108,197 @@ class AppLocalizationsZh extends AppLocalizations {
   String alsoWorksMuscles(String muscles) {
     return '辅助肌群 $muscles';
   }
+
+  @override
+  String get wearSyncAllow => '允许蓝牙';
+
+  @override
+  String get wearSyncSearching => '正在寻找手机…';
+
+  @override
+  String get wearSyncNotFound => '未找到手机';
+
+  @override
+  String get wearSyncBluetoothOff => '蓝牙已关闭';
+
+  @override
+  String get watchRow => 'Wear OS 手表';
+
+  @override
+  String get watchTitle => 'Wear OS 手表';
+
+  @override
+  String get watchSubtitle => '训练计划戴在手腕上，训练记录回到手机里';
+
+  @override
+  String get watchPoint1 => '在手表上安装 GymMane';
+
+  @override
+  String get watchPoint1Body => '和手机上是同一个应用。点击查看安装指南。';
+
+  @override
+  String get watchPoint2 => '在两边都打开 GymMane';
+
+  @override
+  String get watchPoint2Body => '它们通过手机和手表之间已有的蓝牙自动同步。无需联网。';
+
+  @override
+  String get watchPoint3 => '用手表训练';
+
+  @override
+  String get watchPoint3Body => '你在手表上的训练，会在下次两边都打开时传到手机。';
+
+  @override
+  String get watchUse => '与手表同步';
+
+  @override
+  String get watchUseHint => '有手表才需要。会请求蓝牙权限';
+
+  @override
+  String get watchTurnOnBluetooth => '打开蓝牙';
+
+  @override
+  String get watchSyncNow => '立即同步';
+
+  @override
+  String get watchSearching => '正在寻找手表…';
+
+  @override
+  String get watchSearchingHint => '如果还没打开，请在手表上打开 GymMane。';
+
+  @override
+  String get watchBluetoothOff => '蓝牙已关闭。';
+
+  @override
+  String get watchNotFound => '未找到手表。请在手表上打开 GymMane 后重试。';
+
+  @override
+  String get watchNever => '尚未同步。';
+
+  @override
+  String watchLast(String when) {
+    return '已于 $when 同步。';
+  }
+
+  @override
+  String watchLastWith(String name, String when) {
+    return '已于 $when 与 $name 同步。';
+  }
+
+  @override
+  String get watchTip => '测试版：还没在所有手表上试过。如有问题，请在 GitHub 上告诉我们。';
+
+  @override
+  String get mineralsTracker => '铁和钾';
+
+  @override
+  String get ironLabel => '铁';
+
+  @override
+  String get potassiumLabel => '钾';
+
+  @override
+  String mineralsCoverage(int known, int total) {
+    return '今天 $total 种食物中有 $known 种提供铁和钾数据';
+  }
+
+  @override
+  String get mineralsHint => '内置食物库中只有少量食物提供铁和钾数据，总量只累加已知的数值。可以在自定义食物中手动填写，或使用 AI 填写。';
+
+  @override
+  String get qsRow => '快捷设置磁贴';
+
+  @override
+  String get qsRowHint => '从顶部面板打开今天的训练或健身房会员卡';
+
+  @override
+  String get qsTitle => '快捷设置磁贴';
+
+  @override
+  String get qsSubtitle => '下拉快捷设置，一点就到，不用找应用';
+
+  @override
+  String get qsToday => '今天的训练';
+
+  @override
+  String get qsTodayHint => '和 NFC 贴纸一样：打开今天的安排';
+
+  @override
+  String get qsPass => '健身房会员卡';
+
+  @override
+  String qsPassHint(String name) {
+    return '打开 $name，方便在门口刷卡';
+  }
+
+  @override
+  String get qsPassNone => '请先添加健身房会员卡';
+
+  @override
+  String get qsRest => '休息日';
+
+  @override
+  String get qsAdd => '添加';
+
+  @override
+  String get qsAdded => '已添加';
+
+  @override
+  String get qsManual => '下拉快捷设置，点铅笔，把 GymMane 磁贴拖到你的磁贴里。';
+
+  @override
+  String get qsPassUse => '从快捷设置打开';
+
+  @override
+  String get qsPassUseHint => '快捷设置磁贴会打开这张卡';
+
+  @override
+  String get measureAbdomen => '腹围';
+
+  @override
+  String get bfNeckBelow => '颈围（喉结下方）';
+
+  @override
+  String get bfAbdomen => '腹围（肚脐高度）';
+
+  @override
+  String get bfWaistNarrow => '腰围（最细处）';
+
+  @override
+  String get bfHipWide => '臀围（最宽处）';
+
+  @override
+  String get measureBp => '血压';
+
+  @override
+  String get measureLeft => '左';
+
+  @override
+  String get measureRight => '右';
+
+  @override
+  String get measureLeftShort => '左';
+
+  @override
+  String get measureRightShort => '右';
+
+  @override
+  String get measureOneValue => '单个数值';
+
+  @override
+  String get measureNoteHint => '备注（可选）';
+
+  @override
+  String get bpHigh => '收缩压';
+
+  @override
+  String get bpLow => '舒张压';
+
+  @override
+  String get bpPulse => '脉搏';
+
+  @override
+  String get bpPulseAdd => '+ 脉搏';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -15624,6 +15847,38 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get webPhoneGuide => '如何設定';
 
   @override
+  String get webSignOut => '登出';
+
+  @override
+  String get wearSyncTitle => '手機';
+
+  @override
+  String get wearSyncNever => '尚未同步';
+
+  @override
+  String wearSyncLast(String when) {
+    return '已於 $when 同步';
+  }
+
+  @override
+  String wearSyncWaiting(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 次訓練等待傳到手機');
+    return '$_temp0';
+  }
+
+  @override
+  String get wearSyncNow => '立即同步';
+
+  @override
+  String get wearSyncHow => '在手機上開啟 設定 › Wear OS 手錶，並在兩邊都開啟 GymMane。';
+
+  @override
+  String get routinesOrder => '調整課表順序';
+
+  @override
+  String get routinesOrderHint => '拖曳以變更顯示順序。';
+
+  @override
   String get webPhoneOff => '這台伺服器關閉了手機同步';
 
   @override
@@ -15715,4 +15970,372 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String exerciseCopyName(String name) {
     return '$name（副本）';
   }
+
+  @override
+  String get keepCounting => '繼續計時';
+
+  @override
+  String get keepCountingHint => '時間到會響，一直走到你停下';
+
+  @override
+  String get holdOvertime => '超時';
+
+  @override
+  String get pairSetting => '一對啞鈴';
+
+  @override
+  String get pairSettingHint => '記錄一支的重量，訓練量算兩支。';
+
+  @override
+  String get helpCommon => '常見問題';
+
+  @override
+  String get helpQuestions => '問題';
+
+  @override
+  String get helpNoResults => '沒有符合的內容，換個詞試試';
+
+  @override
+  String get helpLbQ => '可以只讓一個動作用 lb 嗎？';
+
+  @override
+  String helpLbA(String option) {
+    return '可以。訓練時打開該動作的 ⋯ 選單，選擇「$option」。';
+  }
+
+  @override
+  String get helpSupersetQ => '怎麼做超級組？';
+
+  @override
+  String get helpSupersetA => '在課表編輯器裡，點兩個動作之間的連結把它們串起來。';
+
+  @override
+  String get helpRangeQ => '怎麼設定 8-12 這種次數範圍？';
+
+  @override
+  String get helpRangeA => '在課表編輯器裡長按次數。';
+
+  @override
+  String get helpRestQ => '每個動作可以有自己的休息時間嗎？';
+
+  @override
+  String helpRestA(String settings, String rest, String section) {
+    return '可以：打開動作 › $settings › $rest。預設休息在 設定 › $section。';
+  }
+
+  @override
+  String get helpSidesQ => '怎麼分開記錄左右兩邊？';
+
+  @override
+  String helpSidesA(String settings, String sides) {
+    return '打開動作 › $settings › $sides。';
+  }
+
+  @override
+  String get helpPairQ => '啞鈴：記一支還是兩支？';
+
+  @override
+  String helpPairA(String pair) {
+    return '記一支。在動作設定裡開啟「$pair」，訓練量會算兩支。';
+  }
+
+  @override
+  String get helpKeepQ => '計時組可以超過設定時間嗎？';
+
+  @override
+  String helpKeepA(String keep) {
+    return '可以：在動作設定裡開啟「$keep」。時間到會響，並繼續計時直到你停下。';
+  }
+
+  @override
+  String get helpDayOffQ => '怎麼標記休息日、生病或旅行的日子？';
+
+  @override
+  String get helpDayOffA => '在首頁長按本週的那一天。連續紀錄和提醒都不會受影響。';
+
+  @override
+  String get helpImportQ => '能從 Hevy、Strong 或其他 App 匯入訓練嗎？';
+
+  @override
+  String helpImportA(String section, String row) {
+    return '可以：設定 › $section › $row。也能讀取 FitNotes、Fitbod、JEFIT、StrongLifts、Liftosaur 和 Lyfta。';
+  }
+
+  @override
+  String get helpPhoneQ => '怎麼把資料搬到新手機？';
+
+  @override
+  String helpPhoneA(String section, String import) {
+    return '在 設定 › $section 匯出一份副本，在新手機上用「$import」打開。';
+  }
+
+  @override
+  String get helpSlowQ => 'App 在我的手機上很卡';
+
+  @override
+  String helpSlowA(String section, String perf, String lite) {
+    return '設定 › $section › $perf › $lite。會關掉最吃效能的模糊效果。';
+  }
+
+  @override
+  String get helpPlatesQ => '槓上要放幾片槓片？';
+
+  @override
+  String helpPlatesA(String tool, String places) {
+    return '用工具裡的「$tool」。你健身房的槓片和槓在「$places」裡設定。';
+  }
+
+  @override
+  String get helpRaceQ => '怎麼跟上次訓練比較？';
+
+  @override
+  String helpRaceA(String race) {
+    return '訓練時點上方的膠囊：「$race」。';
+  }
+
+  @override
+  String get helpFastQ => '我忘了結束斷食';
+
+  @override
+  String helpFastA(String adjust) {
+    return '結束它並點通知上的「$adjust」，或在斷食面板裡點那次斷食來修改時間。';
+  }
+
+  @override
+  String get helpGo => '帶我去';
+
+  @override
+  String get helpHomeOrderQ => '可以調整首頁的順序嗎？';
+
+  @override
+  String helpHomeOrderA(String section, String row) {
+    return '可以：設定 › $section › 「$row」。按住拖曳各區塊，或關掉不用的。';
+  }
+
+  @override
+  String get helpCustomQ => '可以建立自己的動作嗎？';
+
+  @override
+  String helpCustomA(String button) {
+    return '可以：在動作裡點「$button」。選好名稱、肌肉和器材，用起來跟其他動作一樣。';
+  }
+
+  @override
+  String get helpWarmupQ => 'App 能幫我加熱身組嗎？';
+
+  @override
+  String helpWarmupA(String settings, String warm, String tool) {
+    return '可以：打開動作 › $settings › 「$warm」。想自己算，用工具裡的「$tool」。';
+  }
+
+  @override
+  String get helpPassQ => '能把健身房會員卡放進 App 嗎？';
+
+  @override
+  String helpPassA(String row, String section) {
+    return '可以：設定 › $section 裡的「$row」。會顯示門口掃描用的條碼或 QR 碼。';
+  }
+
+  @override
+  String get helpStepsQ => '為什麼看不到我的步數？';
+
+  @override
+  String helpStepsA(String row, String section) {
+    return '步數來自 Health Connect，Android 14 以上內建。較舊的手機沒有。如果你有，在 設定 › $section 裡開啟「$row」。';
+  }
+
+  @override
+  String get helpNfcQ => '能用手機碰一下開始訓練嗎？';
+
+  @override
+  String helpNfcA(String row, String section) {
+    return '可以，用 NFC 貼紙：設定 › $section 裡的「$row」。貼在健身房，碰一下就打開今天的訓練。';
+  }
+
+  @override
+  String get helpCleanQ => '怎麼讓營養頁面更簡潔？';
+
+  @override
+  String helpCleanA(String button) {
+    return '在營養頁面點上方的滑桿按鈕（「$button」），關掉你不記錄的項目。';
+  }
+
+  @override
+  String alsoWorksMuscles(String muscles) {
+    return '也練到 $muscles';
+  }
+
+  @override
+  String get wearSyncAllow => '允許藍牙';
+
+  @override
+  String get wearSyncSearching => '正在尋找手機…';
+
+  @override
+  String get wearSyncNotFound => '找不到手機';
+
+  @override
+  String get wearSyncBluetoothOff => '藍牙已關閉';
+
+  @override
+  String get watchRow => 'Wear OS 手錶';
+
+  @override
+  String get watchTitle => 'Wear OS 手錶';
+
+  @override
+  String get watchSubtitle => '課表戴在手腕上，訓練紀錄回到手機裡';
+
+  @override
+  String get watchPoint1 => '在手錶上安裝 GymMane';
+
+  @override
+  String get watchPoint1Body => '跟手機上是同一個 App。點一下查看安裝指南。';
+
+  @override
+  String get watchPoint2 => '在兩邊都開啟 GymMane';
+
+  @override
+  String get watchPoint2Body => '它們透過手機和手錶之間既有的藍牙自動同步。不需要網路。';
+
+  @override
+  String get watchPoint3 => '用手錶訓練';
+
+  @override
+  String get watchPoint3Body => '你在手錶上的訓練，會在下次兩邊都開啟時傳到手機。';
+
+  @override
+  String get watchUse => '與手錶同步';
+
+  @override
+  String get watchUseHint => '有手錶才需要。會要求藍牙權限';
+
+  @override
+  String get watchTurnOnBluetooth => '開啟藍牙';
+
+  @override
+  String get watchSyncNow => '立即同步';
+
+  @override
+  String get watchSearching => '正在尋找手錶…';
+
+  @override
+  String get watchSearchingHint => '如果還沒開，請在手錶上開啟 GymMane。';
+
+  @override
+  String get watchBluetoothOff => '藍牙已關閉。';
+
+  @override
+  String get watchNotFound => '找不到手錶。請在手錶上開啟 GymMane 後再試一次。';
+
+  @override
+  String get watchNever => '尚未同步。';
+
+  @override
+  String watchLast(String when) {
+    return '已於 $when 同步。';
+  }
+
+  @override
+  String watchLastWith(String name, String when) {
+    return '已於 $when 與 $name 同步。';
+  }
+
+  @override
+  String get watchTip => '測試版：還沒在所有手錶上試過。如有問題，請在 GitHub 上告訴我們。';
+
+  @override
+  String get qsRow => '快速設定圖塊';
+
+  @override
+  String get qsRowHint => '從上方面板開啟今天的訓練或健身房會員卡';
+
+  @override
+  String get qsTitle => '快速設定圖塊';
+
+  @override
+  String get qsSubtitle => '下拉快速設定，一點就到，不用找 App';
+
+  @override
+  String get qsToday => '今天的訓練';
+
+  @override
+  String get qsTodayHint => '和 NFC 貼紙一樣：開啟今天的安排';
+
+  @override
+  String get qsPass => '健身房會員卡';
+
+  @override
+  String qsPassHint(String name) {
+    return '開啟 $name，方便在門口刷卡';
+  }
+
+  @override
+  String get qsPassNone => '請先新增健身房會員卡';
+
+  @override
+  String get qsRest => '休息日';
+
+  @override
+  String get qsAdd => '新增';
+
+  @override
+  String get qsAdded => '已新增';
+
+  @override
+  String get qsManual => '下拉快速設定，點鉛筆，把 GymMane 圖塊拖到你的圖塊裡。';
+
+  @override
+  String get qsPassUse => '從快速設定開啟';
+
+  @override
+  String get qsPassUseHint => '快速設定圖塊會開啟這張卡';
+
+  @override
+  String get measureAbdomen => '腹圍';
+
+  @override
+  String get bfNeckBelow => '頸圍（喉結下方）';
+
+  @override
+  String get bfAbdomen => '腹圍（肚臍高度）';
+
+  @override
+  String get bfWaistNarrow => '腰圍（最細處）';
+
+  @override
+  String get bfHipWide => '臀圍（最寬處）';
+
+  @override
+  String get measureBp => '血壓';
+
+  @override
+  String get measureLeft => '左';
+
+  @override
+  String get measureRight => '右';
+
+  @override
+  String get measureLeftShort => '左';
+
+  @override
+  String get measureRightShort => '右';
+
+  @override
+  String get measureOneValue => '單一數值';
+
+  @override
+  String get measureNoteHint => '備註（可選）';
+
+  @override
+  String get bpHigh => '收縮壓';
+
+  @override
+  String get bpLow => '舒張壓';
+
+  @override
+  String get bpPulse => '脈搏';
+
+  @override
+  String get bpPulseAdd => '+ 脈搏';
 }

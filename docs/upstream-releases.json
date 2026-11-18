@@ -1,5 +1,21 @@
 [
   {
+    "version": "2.4.0",
+    "date": "2026-11-18",
+    "zh": [
+      "Wear OS 测试版支持蓝牙同步，Android 快捷设置可打开当天训练和健身房会员卡。",
+      "训练方案可重排并查看上次训练时间；修正计时进阶、提前结束计时和重复纪录判断。",
+      "体测新增血压、备注、左右侧及腹围；饮食可选记录铁和钾，并可打开分享的食物 JSON。",
+      "修复键盘残留空白、头像刷新及部分设备启动卡住；自托管支持多人独立数据和更多安装环境。"
+    ],
+    "en": [
+      "Wear OS beta adds Bluetooth sync, and Android Quick Settings opens today's workout or the gym pass.",
+      "Reorder routines and see their last use; fixes cover time progression, early timer completion and repeated personal records.",
+      "Measurements add blood pressure, notes, left/right entries and abdomen; nutrition optionally tracks iron and potassium and opens shared food JSON.",
+      "Fixes address stale keyboard gaps, profile photos and launch failures; self-hosting adds separate people and more installation options."
+    ]
+  },
+  {
     "version": "2.3.0",
     "date": "2026-11-15",
     "zh": [

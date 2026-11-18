@@ -44,6 +44,7 @@ import '../services/home_widget_bridge.dart';
 import '../services/device_kind.dart';
 import '../services/health_steps.dart';
 import '../services/incoming_share.dart';
+import '../services/meal_ai.dart';
 import '../services/nutrition_widgets.dart';
 import '../services/local_store.dart';
 import '../services/server/server_link.dart';
@@ -147,8 +148,18 @@ class _AppShellState extends State<AppShell> with WidgetsBindingObserver, Single
   }
 
   void _openFromWidget(String route) {
-    if (route == 'nfc/today') {
-      if (mounted) openTodayFromTag(context);
+    if (route == 'nfc/today' || route == 'today') {
+      if (mounted) openTodayFromTag(context, tag: route != 'today');
+      return;
+    }
+    if (route == 'pass') {
+      if (!mounted || !fit.onboarded) return;
+      final pass = fit.quickPass;
+      if (pass == null) {
+        if (!fit.isSessionActive) fit.goGymPasses();
+      } else {
+        showGymPass(context, pass);
+      }
       return;
     }
     if (!mounted || !fit.onboarded || fit.isSessionActive) return;
@@ -188,6 +199,13 @@ class _AppShellState extends State<AppShell> with WidgetsBindingObserver, Single
     _incoming = null;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
+      final food = text.contains(kFoodAiTag) ? parseFoodAi(text) : null;
+      if (food != null) {
+        fit.setNutritionBeta(true);
+        if (fit.route != 'nutrition') fit.goNutrition();
+        showFoodEditor(context, pick: food);
+        return;
+      }
       if (fit.isMealPlanText(text)) {
         final n = fit.importMealPlans(text);
         if (n > 0) {
@@ -1282,7 +1300,7 @@ class _Sidebar extends StatelessWidget {
   ];
 
   String _label(String id) => switch (id) {
-        'home' => titleCase(t.home),
+        'home' => sentenceCase(t.home),
         'progress' => titleCase(t.progress),
         'exercises' => titleCase(t.exercises),
         'settings' => sentenceCase(t.profile),

@@ -15,7 +15,7 @@ Enoch 维护的 Android 训练记录工具。可以安排每周训练，按组�
 
 ## 上游同步
 
-已合并原作者 GymMane **v2.3.0**，并同步至上游 `main` 的 `9fa8e4c`。发版后的改动包括计时组继续计数、左右侧训练量修正和 JEFIT 导入兼容。NFC 默认关闭，可在「设置 → 训练 → NFC 贴纸」启用。自托管说明见 [SELFHOST.md](SELFHOST.md)。
+已合并原作者 GymMane **v2.4.0**，并同步至上游 `main` 的 `ffecd19`。包含训练纪录和计时修复、方案排序、体测扩展、Android 快捷设置入口及可选的手表蓝牙同步。NFC 默认关闭，可在「设置 → 训练 → NFC 贴纸」启用。自托管说明见 [SELFHOST.md](SELFHOST.md)。
 
 ## 安装与更新
 

@@ -628,6 +628,7 @@ class FitState extends FitCore
         'place': activePlaceId,
         if (gymPasses.isNotEmpty) 'passes': gymPasses.map((p) => p.toJson()).toList(),
         if (lastPassId.isNotEmpty) 'lastPass': lastPassId,
+        if (quickPassId.isNotEmpty) 'quickPass': quickPassId,
         'checkins': checkins.toList(),
         if (daysOff.isNotEmpty) 'daysOff': daysOff,
         'routines': routines.map((r) => r.toJson()).toList(),
@@ -743,6 +744,7 @@ class FitState extends FitCore
     activePlaceId = '';
     gymPasses.clear();
     lastPassId = '';
+    quickPassId = '';
     checkins.clear();
     daysOff.clear();
     routines.clear();
