@@ -1,5 +1,21 @@
 [
   {
+    "version": "2.5.0",
+    "date": "2026-11-22",
+    "zh": [
+      "动作和健康指标支持全屏趋势图。可按周或月设定各肌群的训练组数目标，肌肉恢复估算纳入次数与相对负荷。",
+      "同一动作可在方案里设置多个独立区块，串联动作可在换动作前休息；训练历史支持逐组查看和分享。",
+      "支持导入 Garmin FIT 文件和 Garmin 导出的 ZIP。训练、饮食及综合报告可导出 PDF 或复制 Markdown。",
+      "新增可选的恢复活动记录，修复睡眠和精力备份、重叠睡眠统计、键盘弹层跳动及宽屏设置。"
+    ],
+    "en": [
+      "Full-screen trends for exercises and health metrics, weekly or monthly set targets by muscle, and recovery estimates that include reps and relative load.",
+      "Repeat an exercise in separate routine blocks, rest between chained exercises, and view each set or share a past workout.",
+      "Import Garmin FIT files or a Garmin export ZIP, and share detailed training, nutrition or full reports as PDF or Markdown.",
+      "Optional recovery activity logs, plus fixes for sleep and energy in backups, overlapping sleep, keyboard jumps and wide-screen settings."
+    ]
+  },
+  {
     "version": "2.4.0",
     "date": "2026-11-18",
     "zh": [

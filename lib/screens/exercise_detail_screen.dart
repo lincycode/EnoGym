@@ -238,6 +238,11 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                   ),
                 ],
               ),
+              if (fit.strengthToWeight(ex.id, pr) case final ratio?) ...[
+                const SizedBox(height: 10),
+                Text(t.bodyweightRatio(fmt(ratio)),
+                    style: AppTheme.f(12.5, weight: FontWeight.w600, color: gc.textSecondary)),
+              ],
               if (history.length > 1) _bests(gc, ex.id, pr.kind),
               if (pr.kind == PrKind.weight && oneRm.length > 2) ...[
                 const SizedBox(height: 16),
@@ -450,6 +455,16 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
         fit.suggests(ex.id),
         () => fit.toggleSuggest(ex.id),
       ),
+      if (fit.canCarryBody(ex.id))
+        _switchRow(
+          gc,
+          PhosphorIconsRegular.personSimple,
+          t.bodyLoadSetting,
+          t.bodyLoadSettingHint,
+          fit.carriesBody(ex.id),
+          () => fit.toggleCarriesBody(ex.id),
+        ),
+      if (fit.canCarryBody(ex.id) && fit.carriesBody(ex.id)) _bodyShareRow(gc, ex.id),
       if (!repsOnly && mode.isEmpty) ...[
         _switchRow(
           gc,
@@ -1301,6 +1316,49 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                   format: (v) => clockLabel(v.round()),
                   tickLabel: (v) => clockLabel(v.round()));
               if (v != null) fit.setExerciseRest(id, v.round());
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _bodyShareRow(GymColors gc, String id) {
+    final own = fit.hasOwnBodyShare(id);
+    final pct = fit.bodyShareOf(id);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Row(
+        children: [
+          _rowIcon(gc, PhosphorIconsRegular.percent, own),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(titleCase(t.bodyShareSetting), style: AppTheme.f(14.5, weight: FontWeight.w500, color: gc.text)),
+                const SizedBox(height: 3),
+                GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: own ? () => fit.setBodyShare(id, null) : null,
+                  child: Text(own ? t.bodyShareCustom(fit.bodyShareDefault(id)) : t.bodyShareHint,
+                      style: AppTheme.f(11.5, weight: FontWeight.w500, color: own ? gc.accent : gc.textSecondary, height: 1.3)),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 12),
+          StepperControl(
+            value: ltr('$pct %'),
+            minWidth: 52,
+            btnSize: 30,
+            gap: 3,
+            fontSize: 14,
+            btnRadius: 10,
+            onDec: () => fit.setBodyShare(id, pct - 5),
+            onInc: () => fit.setBodyShare(id, pct + 5),
+            onEdit: () async {
+              final v = await askNumber(context, title: t.bodyShareSetting, initial: '$pct', decimal: false);
+              if (v != null) fit.setBodyShare(id, v.round());
             },
           ),
         ],

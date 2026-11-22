@@ -2,7 +2,7 @@ part of 'fit_state.dart';
 
 const String kBgPhotoId = 'bg';
 
-const List<String> kHomeBlocks = ['weekdays', 'steps', 'week', 'routines', 'activity', 'recommended', 'folders', 'nutrition'];
+const List<String> kHomeBlocks = ['weekdays', 'steps', 'week', 'routines', 'activity', 'recommended', 'folders', 'nutrition', 'recovery'];
 
 mixin SettingsState on FitCore, ToolsState, LibraryState {
   String themePref = 'dark';
@@ -44,11 +44,13 @@ mixin SettingsState on FitCore, ToolsState, LibraryState {
   List<String> customGear = [];
   bool levelHints = true;
   bool toastSound = true;
+  bool restGlow = false;
   String autoProgress = 'off';
   static const autoProgressModes = ['off', 'weight', 'reps'];
   bool heatmapLabels = true;
   bool hideShots = false;
   bool autoAdvance = true;
+  bool autoHold = false;
   bool keepScreenOn = true;
   bool blurOn = true;
   String textSize = 'normal';
@@ -458,6 +460,12 @@ mixin SettingsState on FitCore, ToolsState, LibraryState {
     notifyListeners();
   }
 
+  void toggleAutoHold() {
+    autoHold = !autoHold;
+    _persist();
+    notifyListeners();
+  }
+
   void toggleStartCountdown() {
     startCountdown = !startCountdown;
     _persist();
@@ -651,6 +659,12 @@ mixin SettingsState on FitCore, ToolsState, LibraryState {
 
   void toggleHideShots() {
     hideShots = !hideShots;
+    _persist();
+    notifyListeners();
+  }
+
+  void toggleRestGlow() {
+    restGlow = !restGlow;
     _persist();
     notifyListeners();
   }

@@ -158,6 +158,16 @@ class MainActivity : FlutterActivity() {
                     result.success(am.isLowRamDevice || info.totalMem < 3_500_000_000L)
                 }
                 "headphones" -> result.success(headphonesConnected())
+                "openApp" -> {
+                    val target = call.argument<String>("package")
+                    val launch = target?.let { packageManager.getLaunchIntentForPackage(it) }
+                    if (launch == null) {
+                        result.success(false)
+                    } else {
+                        launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        result.success(runCatching { startActivity(launch) }.isSuccess)
+                    }
+                }
                 else -> result.notImplemented()
             }
         }

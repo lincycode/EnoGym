@@ -18,6 +18,7 @@ import '../widgets/entrance.dart';
 import '../widgets/exercise_media.dart';
 import '../widgets/glass.dart';
 import '../widgets/home_folder.dart';
+import '../widgets/recovery_art.dart';
 import '../widgets/routine_folder.dart';
 import '../widgets/scroll_away.dart';
 import '../widgets/steps_card.dart';
@@ -41,13 +42,11 @@ class HomeScreen extends StatelessWidget {
       id: 'home',
       child: SafeArea(
       bottom: false,
-      child: SingleChildScrollView(
+      child: ListView(
         key: const PageStorageKey('home'),
         clipBehavior: Clip.none,
         padding: const EdgeInsets.fromLTRB(20, 14, 20, 116),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: riseAll([
+        children: riseAll([
             _topBar(gc),
             const SizedBox(height: 20),
             if (fit.showFocus || fit.todayRoutine?.exerciseIds.isNotEmpty == true) ...[
@@ -60,7 +59,6 @@ class HomeScreen extends StatelessWidget {
             ],
             ..._homeBlocks(context, gc, routines, recommended),
           ]),
-        ),
       ),
       ),
     );
@@ -72,7 +70,7 @@ class HomeScreen extends StatelessWidget {
     Widget one(List<Widget> b) =>
         b.length == 1 ? b.single : Column(crossAxisAlignment: CrossAxisAlignment.stretch, mainAxisSize: MainAxisSize.min, children: b);
     final year = fit.heatmapYear;
-    const slots = {'weekdays': 1, 'routines': 1, 'folders': 0, 'week': 2, 'nutrition': 2, 'steps': 2, 'activity': 2};
+    const slots = {'weekdays': 1, 'routines': 1, 'folders': 0, 'week': 2, 'nutrition': 2, 'steps': 2, 'activity': 2, 'recovery': 2};
     final hero = fit.showFocus || fit.todayRoutine?.exerciseIds.isNotEmpty == true;
     bool shown(String id) => blocks[id]?.isNotEmpty ?? false;
     final fixed = hero &&
@@ -162,7 +160,7 @@ class HomeScreen extends StatelessWidget {
           ? (fit.photoDue ? (card ? 14.0 : 30.0) : (card ? 0.0 : 16.0))
           : (card && (last == 'weekdays' || last == 'steps'))
               ? 14.0
-              : id == 'nutrition' && last == 'folders'
+              : (id == 'nutrition' || id == 'recovery') && (last == 'folders' || last == 'nutrition')
                   ? 12.0
                   : 30.0;
       out.add(SizedBox(height: gap));
@@ -289,6 +287,18 @@ class HomeScreen extends StatelessWidget {
                 onTap: fit.goNutrition,
               ),
             ],
+      ],
+      'recovery': [
+            if (fit.recoveryOn)
+              HomeFolder(
+                title: _tc(t.recoveryTitle),
+                detail: fit.recoveryWeek.sessions == 0
+                    ? t.recoverySettingHint
+                    : t.recoveryHomeDetail(((fit.recoveryWeek.heat + fit.recoveryWeek.cold + fit.recoveryWeek.breath) / 60).round()),
+                peek: const RecoveryPeek(),
+                badge: BetaTag(t.sectionBeta, small: true),
+                onTap: fit.goRecovery,
+              ),
       ],
     };
   }

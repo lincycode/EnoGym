@@ -469,6 +469,8 @@ const Map<String, String> kExerciseNameZh = {
   'handgrip': '握力器',
   'cable-rear-delt-row': '绳索后束划船',
   'bayesian-cable-curl': '贝叶斯绳索弯举',
+  'landmine-rotation': '地雷管杠铃转体',
+  'incline-hammer-curl': '上斜哑铃锤式弯举',
 };
 
 const Map<String, List<String>> kExerciseStepsZh = {
@@ -3704,6 +3706,20 @@ const Map<String, List<String>> kExerciseStepsZh = {
     '保持肘部不动，把把手弯举向肩膀。',
     '在顶部收紧肱二头肌。',
     '慢慢放下，直到手臂再次伸直并回到身体后方，然后换手。',
+  ],
+  'landmine-rotation': [
+    '把杠铃一端固定在地雷管底座或墙角，面向固定端站立，双脚与肩同宽。',
+    '双手将杠铃自由端举在面前，手臂接近伸直。',
+    '转动躯干和髋部，让杠铃沿弧线降至一侧髋部。',
+    '将杠铃沿弧线举回中央，再降到另一侧。',
+    '保持手臂伸展，主要用躯干带动转体。',
+  ],
+  'incline-hammer-curl': [
+    '把训练凳调到约 45 度，背靠凳面坐下，双手各握一只哑铃。',
+    '让双臂自然下垂，掌心相对。',
+    '保持肘部不动，拇指朝上将哑铃弯举起来。',
+    '在顶端收紧肱二头肌，避免肘部向前移动。',
+    '缓慢放下哑铃，直到手臂完全伸直。',
   ],
 };
 

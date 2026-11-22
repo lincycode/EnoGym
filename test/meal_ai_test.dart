@@ -506,4 +506,31 @@ void main() {
       expect(parseFoodAi(p), isNotNull);
     });
   });
+
+  group('por qué no se ha podido leer', () {
+    test('solo texto, sin datos: la IA se ha negado o ha contestado en frase', () {
+      expect(diagnoseMealAi('Lo siento, no puedo ver la foto. ¿Me describes el plato?'), MealAiTrouble.noData);
+    });
+
+    test('un JSON a medias es una respuesta cortada', () {
+      expect(diagnoseMealAi('```json {"gymmane": "meal", "options": [{"items": [{"name": "Arroz", "grams": 150'),
+          MealAiTrouble.cut);
+    });
+
+    test('con datos completos pero raros, el aviso de siempre', () {
+      expect(diagnoseMealAi('{"hola": 1}'), MealAiTrouble.unknown);
+    });
+  });
+  test('#417 el escáner manda un alimento o un apunte rápido con el mismo formato', () {
+    const food = '{"gymmane":"gymmane-food","v":1,"food":{"name":"Skyr · Arla","serving_name":"1 pot","grams":150,"liquid":false,"per100":{"kcal":63,"protein":11,"carbs":4,"fat":0.2,"sodium":40}}}';
+    final quick = food.replaceFirst('"v":1,', '"v":1,"mode":"quick",');
+    expect(isQuickFood(food), isFalse);
+    expect(isQuickFood(quick), isTrue);
+    final pick = parseFoodAi(quick)!;
+    expect(pick.food.name, 'Skyr · Arla');
+    expect(pick.food.grams, 150);
+    expect(pick.food.per100, isTrue);
+    expect(pick.food.kcal, 63);
+    expect(pick.serving, '1 pot');
+  });
 }
