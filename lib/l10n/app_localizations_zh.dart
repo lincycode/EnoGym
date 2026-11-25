@@ -432,6 +432,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get restOverTitle => '休息结束';
 
   @override
+  String get restOvertime => '休息超时';
+
+  @override
+  String get endRest => '结束休息';
+
+  @override
   String get restOverBody => '可以开始下一组了。';
 
   @override

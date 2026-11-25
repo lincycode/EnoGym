@@ -438,6 +438,12 @@ class AppLocalizationsId extends AppLocalizations {
   String get restOverTitle => 'Istirahat selesai';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'Ayo lanjut, set berikutnya menunggu.';
 
   @override

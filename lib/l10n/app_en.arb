@@ -146,6 +146,8 @@
   "notifAlertChannel": "Rest timer (alert)",
   "notifAlertChannelWhy": "Shows a banner the moment your rest is over",
   "restOverTitle": "Rest over",
+  "restOvertime": "Rest overtime",
+  "endRest": "End rest",
   "restOverBody": "Back to it, next set is waiting.",
   "allTimeSessions": "SESSIONS",
   "allTimeTime": "TIME",

@@ -442,6 +442,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get restOverTitle => 'Recupero finito';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'Dacci dentro, la prossima serie ti aspetta.';
 
   @override

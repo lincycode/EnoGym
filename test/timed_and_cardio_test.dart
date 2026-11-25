@@ -138,6 +138,7 @@ void main() {
       fit.restElapsed();
       expect(fit.holding, isTrue);
       expect(fit.holdSet, 1);
+      expect(fit.session!.restOvertime, isNull);
       fit.stopHold();
     });
 
@@ -151,6 +152,10 @@ void main() {
       fit.session!.restEndsAt = DateTime.now().subtract(const Duration(seconds: 1));
       fit.restElapsed();
       expect(fit.holding, isFalse);
+      expect(fit.session!.restOvertime, isNotNull);
+      fit.startHold(0, 1);
+      expect(fit.session!.restOvertime, isNull);
+      fit.stopHold();
     });
 
     test('a un segundo del final cuenta como completo', () {

@@ -1,4 +1,6 @@
 repRecordsTitle
+restOvertime
+endRest
 lightSession
 lightSessionHint
 lightSessionNote

@@ -443,6 +443,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get restOverTitle => 'Repos terminé';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'C’est reparti, la prochaine série t’attend.';
 
   @override

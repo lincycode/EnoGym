@@ -437,6 +437,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get restOverTitle => 'انتهت الراحة';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'عد إلى التمرين، المجموعة التالية تنتظرك.';
 
   @override

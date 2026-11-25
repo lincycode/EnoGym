@@ -452,6 +452,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get restOverTitle => 'বিশ্রাম শেষ';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'চলো, পরের সেট অপেক্ষা করছে।';
 
   @override

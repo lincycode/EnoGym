@@ -442,6 +442,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get restOverTitle => 'Rust voorbij';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'Daar gaan we weer, de volgende set wacht.';
 
   @override

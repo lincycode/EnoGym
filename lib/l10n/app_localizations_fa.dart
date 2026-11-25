@@ -437,6 +437,12 @@ class AppLocalizationsFa extends AppLocalizations {
   String get restOverTitle => 'استراحت تمام شد';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'برگرد سر تمرین، ست بعدی منتظر است.';
 
   @override

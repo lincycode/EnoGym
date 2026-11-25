@@ -442,6 +442,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get restOverTitle => 'Dinlenme bitti';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'Devam, sıradaki set seni bekliyor.';
 
   @override

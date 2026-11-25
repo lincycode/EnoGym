@@ -460,6 +460,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get restOverTitle => 'Отдых окончен';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'Возвращайся — следующий подход ждёт.';
 
   @override

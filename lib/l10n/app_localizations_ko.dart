@@ -432,6 +432,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get restOverTitle => '휴식 종료';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => '다시 시작해요, 다음 세트가 기다립니다.';
 
   @override

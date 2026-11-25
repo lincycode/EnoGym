@@ -432,6 +432,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get restOverTitle => '休憩終了';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => '再開しよう、次のセットが待っています。';
 
   @override

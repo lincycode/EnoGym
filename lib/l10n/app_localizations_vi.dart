@@ -432,6 +432,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get restOverTitle => 'Hết giờ nghỉ';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'Tập tiếp thôi, hiệp kế tiếp đang chờ.';
 
   @override

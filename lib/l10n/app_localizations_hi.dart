@@ -452,6 +452,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get restOverTitle => 'आराम ख़त्म';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'चलो, अगला सेट इंतज़ार कर रहा है।';
 
   @override

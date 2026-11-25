@@ -111,6 +111,8 @@ class WorkoutSession {
   DateTime? restEndsAt;
   int? restFrozen;
   bool restSwitch = false;
+  DateTime? restOverFrom;
+  DateTime? restOverPausedAt;
   int? summaryVolume;
   int? summarySets;
   int? summaryDuration;
@@ -126,10 +128,27 @@ class WorkoutSession {
     return left <= 0 ? null : (left / 1000).ceil();
   }
 
+  bool get hasRest => restEndsAt != null || restFrozen != null || restOverFrom != null;
+
+  int? get restOvertime {
+    final from = restOverFrom;
+    if (from == null) return null;
+    final elapsed = (restOverPausedAt ?? DateTime.now()).difference(from).inSeconds;
+    return elapsed < 0 ? 0 : elapsed;
+  }
+
+  void markRestOver() {
+    restOverFrom = restEndsAt;
+    restEndsAt = null;
+    restSwitch = false;
+  }
+
   void clearRest() {
     restEndsAt = null;
     restFrozen = null;
     restSwitch = false;
+    restOverFrom = null;
+    restOverPausedAt = null;
   }
 
   Map<String, dynamic> toJson() => {
@@ -145,6 +164,8 @@ class WorkoutSession {
         if (restEndsAt != null) 're': restEndsAt!.toIso8601String(),
         if (restFrozen != null) 'rf': restFrozen,
         if (restSwitch && restEndsAt != null) 'rsw': true,
+        if (restOverFrom != null) 'ro': restOverFrom!.toIso8601String(),
+        if (restOverPausedAt != null) 'rop': restOverPausedAt!.toIso8601String(),
         'sv': summaryVolume,
         'ss': summarySets,
         'sd': summaryDuration,
@@ -166,6 +187,8 @@ class WorkoutSession {
     ..restEndsAt = DateTime.tryParse((j['re'] as String?) ?? '')
     ..restFrozen = (j['rf'] as num?)?.toInt()
     ..restSwitch = j['rsw'] as bool? ?? false
+    ..restOverFrom = DateTime.tryParse((j['ro'] as String?) ?? '')
+    ..restOverPausedAt = DateTime.tryParse((j['rop'] as String?) ?? '')
     ..summaryVolume = (j['sv'] as num?)?.toInt()
     ..summarySets = (j['ss'] as num?)?.toInt()
     ..summaryDuration = (j['sd'] as num?)?.toInt()

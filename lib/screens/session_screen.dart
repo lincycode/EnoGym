@@ -156,7 +156,7 @@ class SessionScreen extends StatelessWidget {
           alignment: Alignment.topCenter,
           child: fit.holding && fit.holdEx == exIdx
               ? Padding(padding: const EdgeInsets.only(bottom: 16), child: _holdCard(gc))
-              : s.restRemaining != null
+              : s.hasRest
                   ? Padding(padding: const EdgeInsets.only(bottom: 16), child: _restCard(context, gc, s))
                   : const SizedBox(width: double.infinity),
         ),
@@ -261,7 +261,7 @@ class SessionScreen extends StatelessWidget {
 
   Widget _listScreen(BuildContext context, GymColors gc) {
     final s = fit.session!;
-    final docked = (fit.holding && fit.holdEx >= 0) || s.restRemaining != null;
+    final docked = (fit.holding && fit.holdEx >= 0) || s.hasRest;
     final bottom = MediaQuery.viewPaddingOf(context).bottom;
     final locked = fit.sessionLocked && !s.manual;
     return SafeArea(
@@ -298,7 +298,7 @@ class SessionScreen extends StatelessWidget {
             ),
             child: fit.holding && fit.holdEx >= 0
                 ? KeyedSubtree(key: const ValueKey('hold'), child: _ticking(() => _holdDock(gc)))
-                : s.restRemaining != null
+                : s.hasRest
                     ? KeyedSubtree(key: const ValueKey('rest'), child: _restDock(context, gc, s))
                     : const SizedBox(key: ValueKey('none'), width: double.infinity),
           ),
@@ -774,6 +774,8 @@ class SessionScreen extends StatelessWidget {
           fit.skipRest();
         },
         child: _ticking(() {
+          final over = s.restOvertime;
+          if (over != null) return _restOvertimeCloud(context, gc, over);
           final left = s.restRemaining ?? 0;
           final total = fit.restTotal <= 0 ? 1 : fit.restTotal;
           return _dockFrame(
@@ -808,6 +810,55 @@ class SessionScreen extends StatelessWidget {
           );
         }),
       );
+
+  Widget _restOvertimeCloud(BuildContext context, GymColors gc, int seconds) {
+    final time = '+${clockLabel(seconds)}';
+    final reducedMotion = MediaQuery.disableAnimationsOf(context);
+    return Center(
+      child: SizedBox(
+        width: 248,
+        child: TweenAnimationBuilder<double>(
+          tween: Tween(begin: reducedMotion ? 1.0 : 0.0, end: 1.0),
+          duration: reducedMotion ? Duration.zero : const Duration(milliseconds: 240),
+          curve: Curves.easeOutCubic,
+          builder: (_, blend, child) => CustomPaint(
+            painter: _RestCloudPainter(
+              blend: blend,
+              top: Color.alphaBlend(gc.accentSoft, gc.bgRaised),
+              bottom: gc.bgRaised,
+              border: Color.alphaBlend(gc.accent.withValues(alpha: .15), gc.border),
+            ),
+            child: child,
+          ),
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(23, 12, 17, 12),
+            child: Row(children: [
+              Expanded(
+                child: Semantics(
+                  label: t.restOvertime,
+                  value: time,
+                  excludeSemantics: true,
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    FitText(t.restOvertime,
+                        style: AppTheme.f(11, weight: FontWeight.w800, color: gc.accent)),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: AlignmentDirectional.centerStart,
+                      child: RollingText(time,
+                          countsDown: false,
+                          style: AppTheme.f(26, weight: FontWeight.w800, color: gc.text, height: 1.06)),
+                    ),
+                  ]),
+                ),
+              ),
+              const SizedBox(width: 10),
+              _dockButton(gc, t.endRest, fit.skipRest),
+            ]),
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget _holdDock(GymColors gc) {
     final lead = fit.holdLead;
@@ -2059,13 +2110,16 @@ class SessionScreen extends StatelessWidget {
   }
 
   Widget _restCard(BuildContext context, GymColors gc, WorkoutSession s) => Dismissible(
-        key: ValueKey(s.restEndsAt ?? s.restFrozen),
+        key: ValueKey(s.restEndsAt ?? s.restFrozen ?? s.restOverFrom),
         resizeDuration: null,
         onDismissed: (_) {
           HapticFeedback.lightImpact();
           fit.skipRest();
         },
-        child: _ticking(() => _restPanel(context, gc, s)),
+        child: _ticking(() {
+          final over = s.restOvertime;
+          return over == null ? _restPanel(context, gc, s) : _restOvertimeCloud(context, gc, over);
+        }),
       );
 
   Future<void> _editRest(BuildContext context, WorkoutSession s) async {
@@ -3028,6 +3082,42 @@ Widget _addRow(BuildContext sheetCtx, GymColors gc, Exercise ex) {
       ),
     ),
   );
+}
+
+class _RestCloudPainter extends CustomPainter {
+  const _RestCloudPainter({required this.blend, required this.top, required this.bottom, required this.border});
+
+  final double blend;
+  final Color top, bottom, border;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final w = size.width - 2;
+    final h = size.height - 2;
+    final shape = Path()
+      ..moveTo(0, h * .54)
+      ..cubicTo(0, h * .25, w * .08, h * .14, w * .19, h * .14)
+      ..cubicTo(w * .25, h * .14, w * .28, h * (.14 - .15 * blend), w * .36, h * (.14 - .11 * blend))
+      ..cubicTo(w * .45, h * (.14 - .12 * blend), w * .49, h * .13, w * .56, h * .13)
+      ..cubicTo(w * .64, h * .13, w * .69, h * (.14 - .12 * blend), w * .78, h * (.14 - .05 * blend))
+      ..cubicTo(w * .92, h * .15, w, h * .24, w, h * .54)
+      ..cubicTo(w, h * .82, w * .92, h * .95, w * .80, h * .95)
+      ..cubicTo(w * .68, h * .95, w * .63, h * (.95 + .055 * blend), w * .52, h * .95)
+      ..cubicTo(w * .39, h * (.95 - .035 * blend), w * .33, h * (.95 + .03 * blend), w * .20, h * .94)
+      ..cubicTo(w * .08, h * .92, 0, h * .82, 0, h * .54)
+      ..close();
+    canvas.save();
+    canvas.translate(1, 1);
+    canvas.drawShadow(shape, Colors.black.withValues(alpha: .24), 4, false);
+    final gradient = LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [top, bottom]);
+    canvas.drawPath(shape, Paint()..shader = gradient.createShader(Offset.zero & Size(w, h)));
+    canvas.drawPath(shape, Paint()..color = border..style = PaintingStyle.stroke);
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(_RestCloudPainter oldDelegate) =>
+      oldDelegate.blend != blend || oldDelegate.top != top || oldDelegate.bottom != bottom || oldDelegate.border != border;
 }
 
 class _ExerciseStage extends StatefulWidget {

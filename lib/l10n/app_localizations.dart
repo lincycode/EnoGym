@@ -920,6 +920,18 @@ abstract class AppLocalizations {
   /// **'Rest over'**
   String get restOverTitle;
 
+  /// No description provided for @restOvertime.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest overtime'**
+  String get restOvertime;
+
+  /// No description provided for @endRest.
+  ///
+  /// In en, this message translates to:
+  /// **'End rest'**
+  String get endRest;
+
   /// No description provided for @restOverBody.
   ///
   /// In en, this message translates to:

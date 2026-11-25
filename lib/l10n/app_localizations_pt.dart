@@ -444,6 +444,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get restOverTitle => 'Descanso encerrado';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'De volta ao treino, a próxima série está esperando.';
 
   @override

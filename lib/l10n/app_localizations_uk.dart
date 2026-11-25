@@ -442,6 +442,12 @@ class AppLocalizationsUk extends AppLocalizations {
   String get restOverTitle => 'Відпочинок завершено';
 
   @override
+  String get restOvertime => 'Rest overtime';
+
+  @override
+  String get endRest => 'End rest';
+
+  @override
   String get restOverBody => 'Час продовжувати, наступний підхід чекає.';
 
   @override

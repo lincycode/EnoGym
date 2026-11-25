@@ -686,6 +686,12 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
       sessionPaused = false;
       final frozen = s?.restFrozen;
       if (frozen != null) _armRest(frozen);
+      final pausedAt = s?.restOverPausedAt;
+      final overFrom = s?.restOverFrom;
+      if (s != null && pausedAt != null && overFrom != null) {
+        s.restOverFrom = overFrom.add(DateTime.now().difference(pausedAt));
+        s.restOverPausedAt = null;
+      }
     } else {
       _elapsedBefore = sessionElapsed;
       _runningSince = null;
@@ -694,7 +700,9 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
       RestAlarm.instance.cancel();
       if (s != null) {
         s.restFrozen = s.restRemaining;
+        if (s.restFrozen == null && s.restEndsAt != null) s.markRestOver();
         s.restEndsAt = null;
+        if (s.restOverFrom != null) s.restOverPausedAt = DateTime.now();
       }
       sessionPaused = true;
     }
@@ -824,8 +832,11 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
   }
 
   void toggleSet(int exIdx, int setIdx) {
-    final st = session!.exercises[exIdx].sets[setIdx];
+    final s = session!;
+    final ex = s.exercises[exIdx];
+    final st = ex.sets[setIdx];
     _advanceTimer?.cancel();
+    if (!st.done) _clearRest();
     if (!st.done && !st.half && restsBetweenSides(exIdx, st)) {
       st.half = true;
       _persist();
@@ -843,7 +854,7 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
     _persist();
     notifyListeners();
     if (!st.done) return;
-    final sets = session!.exercises[exIdx].sets;
+    final sets = ex.sets;
     final mini = setIdx + 1 < sets.length && const [SetKind.restPause, SetKind.cluster].contains(sets[setIdx + 1].kind);
     final chain = chainAt(exIdx);
     if (chain.length > 1) {
@@ -1185,7 +1196,7 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
         ? miniRestSeconds
         : routineRest(session!.routineId, current?.routineSlot ?? '') ?? restFor(exId);
     if (seconds <= 0) {
-      session!.clearRest();
+      _clearRest();
       notifyListeners();
       return;
     }
@@ -1239,12 +1250,14 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
     return t.voiceNext(name, load);
   }
 
-  void _armRest(int seconds) {
+  void _armRest(int seconds, {DateTime? deadline}) {
     final s = session;
     if (s == null) return;
     _restTimer?.cancel();
     s.restFrozen = null;
-    final endsAt = DateTime.now().add(Duration(seconds: seconds));
+    s.restOverFrom = null;
+    s.restOverPausedAt = null;
+    final endsAt = deadline ?? DateTime.now().add(Duration(seconds: seconds));
     s.restEndsAt = endsAt;
     RestAlarm.instance.schedule(endsAt);
     _restTimer = Timer.periodic(const Duration(seconds: 1), (t) {
@@ -1267,11 +1280,12 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
     final s = session;
     if (s == null || s.restEndsAt == null || s.restRemaining != null) return;
     _restTimer?.cancel();
-    s.clearRest();
+    s.markRestOver();
     restDoneTick++;
     if (voiceCoach) VoiceCoach.say(t.voiceGo, intlLocale);
     RestAlarm.instance.fireNow();
     _holdNextOnItsOwn();
+    _persist();
     notifyListeners();
   }
 
@@ -1292,15 +1306,17 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
 
   void syncRest() {
     final s = session;
-    if (s == null || s.restEndsAt == null) return;
+    final deadline = s?.restEndsAt;
+    if (s == null || deadline == null) return;
     final left = s.restRemaining;
     if (left == null) {
       _restTimer?.cancel();
-      s.clearRest();
+      s.markRestOver();
       RestAlarm.instance.cancel();
+      _persist();
     } else if (!(_restTimer?.isActive ?? false)) {
       restTotal = math.max(restTotal, left);
-      _armRest(left);
+      _armRest(left, deadline: deadline);
     } else {
       return;
     }
@@ -1314,6 +1330,7 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
     final next = (left + seconds).clamp(5, 600);
     restTotal = seconds > 0 ? math.max(next, restTotal + (next - left)) : math.max(restTotal, next);
     _armRest(next);
+    _persist();
     notifyListeners();
   }
 
@@ -1330,18 +1347,29 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
     if (sessionPaused) {
       s.restEndsAt = null;
       s.restFrozen = next;
-      _persist();
+      s.restOverFrom = null;
+      s.restOverPausedAt = null;
     } else {
       _armRest(next);
     }
+    _persist();
     notifyListeners();
   }
 
+  void _clearRest() {
+    final s = session;
+    if (s == null || !s.hasRest) return;
+    if (s.restEndsAt != null || s.restFrozen != null) {
+      _restTimer?.cancel();
+      RestAlarm.instance.cancel();
+    }
+    s.clearRest();
+  }
+
   void skipRest() {
-    _restTimer?.cancel();
-    RestAlarm.instance.cancel();
+    _clearRest();
     RestAlarm.instance.stopSound();
-    session?.clearRest();
+    _persist();
     notifyListeners();
   }
 
@@ -1506,7 +1534,11 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
     final sets = s.exercises[exIdx].sets;
     if (setIdx < 0 || setIdx >= sets.length) return;
     final secs = (sets[setIdx].sec ?? 30).clamp(1, 18000);
-    if (s.restRemaining != null) skipRest();
+    if (s.restEndsAt != null || s.restFrozen != null) skipRest();
+    if (s.restOverFrom != null) {
+      s.clearRest();
+      _persist();
+    }
     holdEx = exIdx;
     holdSet = setIdx;
     holdSide = 0;

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:gymmane/models/live_session.dart';
 import 'package:gymmane/models/workout.dart';
 import 'package:gymmane/services/local_store.dart';
 import 'package:gymmane/state/fit_state.dart';
@@ -175,9 +176,43 @@ void main() {
       final tick = fit.restDoneTick;
       fit.restElapsed();
       expect(s.restEndsAt, isNull);
+      expect(s.restOvertime, 1);
+      expect(s.hasRest, isTrue);
       expect(fit.restDoneTick, tick + 1);
       fit.restElapsed();
       expect(fit.restDoneTick, tick + 1);
+      fit.skipRest();
+      expect(s.hasRest, isFalse);
+      fit.saveAndExit();
+    });
+
+    test('expired rest survives restoring a draft and freezes with the workout', () {
+      fit.startRoutine(routine('A'));
+      fit.endCountdown();
+      fit.toggleSet(0, 0);
+      final s = fit.session!;
+      final deadline = DateTime.now().subtract(const Duration(seconds: 17));
+      s.restEndsAt = deadline;
+      final tick = fit.restDoneTick;
+      fit.syncRest();
+      expect(s.restOverFrom, deadline);
+      expect(s.restRemaining, isNull);
+      expect(fit.restDoneTick, tick);
+
+      fit.toggleSessionPause();
+      final restored = WorkoutSession.fromJson(s.toJson());
+      expect(restored.restOverFrom, deadline);
+      expect(restored.restOverPausedAt, s.restOverPausedAt);
+      expect(restored.restOvertime, 17);
+      fit.toggleSessionPause();
+      expect(s.restOverPausedAt, isNull);
+      expect(s.restOvertime, 17);
+
+      fit.setSetRest(0, 1, 30);
+      fit.toggleSet(0, 1);
+      expect(s.restOvertime, isNull);
+      expect(s.restRemaining, 30);
+      fit.saveAndExit();
     });
   });
 

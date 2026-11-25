@@ -93,6 +93,8 @@
   "notifAlertChannel": "组间休息提示（警报）",
   "notifAlertChannelWhy": "休息结束时弹出即时横幅提示",
   "restOverTitle": "休息结束",
+  "restOvertime": "休息超时",
+  "endRest": "结束休息",
   "restOverBody": "可以开始下一组了。",
   "allTimeSessions": "总训练次数",
   "allTimeTime": "总训练时长",
