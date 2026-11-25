@@ -13,6 +13,7 @@ class SessionSet {
   bool half = false;
   SetKind kind;
   double? rpe;
+  bool skipRpePrefill = false;
   int? sec;
   double? km;
 
@@ -27,7 +28,8 @@ class SessionSet {
       kind: kind, rpe: rpe, sec: sec, km: km, note: note.trim(), left: repsR == null ? null : reps, right: repsR);
 
   SessionSet copy({bool done = false}) =>
-      SessionSet(reps, weight, done, kind: kind, rpe: rpe, sec: sec, km: km, repsR: repsR, goal: goal);
+      SessionSet(reps, weight, done, kind: kind, rpe: rpe, sec: sec, km: km, repsR: repsR, goal: goal)
+        ..skipRpePrefill = skipRpePrefill;
 
   Map<String, dynamic> toJson() => {
         'r': reps,
@@ -38,6 +40,7 @@ class SessionSet {
         if (half && !done) 'h': true,
         if (kind != SetKind.normal) 'k': kind.index,
         if (rpe != null) 'e': rpe,
+        if (skipRpePrefill) 'noRpe': true,
         if (sec != null) 't': sec,
         if (km != null) 'km': km,
         if (rest != null) 'rs': rest,
@@ -55,7 +58,9 @@ class SessionSet {
         note: j['n'] as String? ?? '',
         repsR: (j['rr'] as num?)?.toInt(),
         goal: j['g'] as String?,
-      )..half = j['h'] as bool? ?? false;
+      )
+        ..half = j['h'] as bool? ?? false
+        ..skipRpePrefill = j['noRpe'] as bool? ?? false;
 }
 
 class SessionExercise {

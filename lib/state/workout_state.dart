@@ -845,9 +845,10 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
       return;
     }
     st.half = false;
+    if (!st.done) st.rpe ??= sessionRpePrefill(exIdx, setIdx);
     st.done = !st.done;
     if (st.done) {
-      session!
+      s
         ..lastDoneAt = DateTime.now()
         ..lastDoneElapsed = sessionElapsed;
     }
@@ -1801,6 +1802,19 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
     notifyListeners();
   }
 
+  double? sessionRpePrefill(int exIdx, int setIdx) {
+    final s = session;
+    if (!logRpe || s == null || s.manual || s.complete || setIdx == 0) return null;
+    final ex = s.exercises[exIdx];
+    final target = ex.sets[setIdx];
+    final previous = ex.sets[setIdx - 1];
+    if (target.done || target.skipRpePrefill || !target.counts || !previous.done ||
+        !previous.counts || modeOf(ex.id) == 'cardio') {
+      return null;
+    }
+    return previous.rpe;
+  }
+
   Future<void> editSessionEffort(
     int exIdx,
     int setIdx,
@@ -1813,14 +1827,15 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
     final target = exercise.sets[setIdx];
     final originalRpe = target.rpe;
     final previous = exercise.sets.take(setIdx).where((set) => set.counts == target.counts && set.rpe != null).lastOrNull;
-    final initial = originalRpe ?? previous?.rpe ?? 8;
+    final shownRpe = originalRpe ?? sessionRpePrefill(exIdx, setIdx);
+    final initial = shownRpe ?? previous?.rpe ?? 8;
 
     // A pending auto-finish would log the set before the picker is confirmed.
     final timer = _advanceTimer;
     final advanceExercise = timer?.isActive == true ? currentExercise : null;
     if (advanceExercise != null) timer!.cancel();
     try {
-      final choice = await pickRpe(initial, originalRpe != null);
+      final choice = await pickRpe(initial, shownRpe != null);
       if (choice == null || session != workout || workout.complete || target.rpe != originalRpe) return;
       final exerciseIndex = workout.exercises.indexOf(exercise);
       final setIndex = exercise.sets.indexOf(target);
@@ -1845,6 +1860,7 @@ mixin WorkoutState on FitCore, SettingsState, LibraryState, PlacesState, StatsSt
     final sets = s.exercises[exIdx].sets;
     if (setIdx >= sets.length) return;
     sets[setIdx].rpe = rpe;
+    sets[setIdx].skipRpePrefill = rpe == null;
     _persist();
     notifyListeners();
     if (rpe != null && sets[setIdx].done && (autoAdvance || sessionLocked) && _advanceTimer?.isActive == true) {

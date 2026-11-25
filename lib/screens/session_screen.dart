@@ -1720,7 +1720,7 @@ class SessionScreen extends StatelessWidget {
   Widget _effortCell(GymColors gc, int exIdx, int j, SessionSet st, String mode, bool locked) {
     final ex = fit.session?.exercises[exIdx];
     final waiting = ex != null && _asksEffort(ex, j, mode);
-    final rpe = st.rpe;
+    final rpe = st.rpe ?? fit.sessionRpePrefill(exIdx, j);
     final shown = rpe == null ? null : _formatEffort(fit.usesRir ? 10 - rpe : rpe);
     return Builder(
       builder: (ctx) => Semantics(

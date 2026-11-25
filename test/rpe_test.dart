@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gymmane/l10n/l10n.dart';
+import 'package:gymmane/models/live_session.dart';
 import 'package:gymmane/models/workout.dart';
 import 'package:gymmane/screens/session_screen.dart';
 import 'package:gymmane/services/local_store.dart';
@@ -104,6 +105,10 @@ void main() {
       await tester.pumpAndSettle();
     }
 
+    String? effort(int exercise, int index) => tester
+        .widget<Semantics>(find.byKey(ValueKey(('session-effort', exercise, index))))
+        .properties.value;
+
     final first = await open(0, 0);
     expect(find.descendant(of: find.byType(BottomSheet), matching: find.text('RPE')), findsOneWidget);
     expect(find.text(t.remainingRepsTitle), findsOneWidget);
@@ -117,6 +122,9 @@ void main() {
 
     fit.toggleSet(0, 0);
     await tester.pumpAndSettle();
+    expect(effort(0, 1), '8');
+    expect(effort(0, 2), isNull);
+    expect(sets[1].rpe, isNull);
     expect((await open(0, 1)).value, 2);
     await save();
     fit.toggleSet(0, 1);
@@ -127,6 +135,8 @@ void main() {
     expect(find.text('RPE 10'), findsOneWidget);
     await save();
     expect(sets[2].rpe, 10);
+    fit.toggleSet(0, 2);
+    await tester.pumpAndSettle();
 
     expect((await open(0, 3)).value, 0);
     await tester.binding.handlePopRoute();
@@ -134,9 +144,14 @@ void main() {
     expect(sets[3].rpe, isNull);
     fit.toggleSet(0, 3);
     await tester.pumpAndSettle();
-    expect((await open(0, 4)).value, 0, reason: 'skip the unrated fourth set');
-    await tester.binding.handlePopRoute();
+    expect(sets[3].rpe, 10, reason: 'marking the set done confirms its prefilled RPE');
+    expect((await open(0, 4)).value, 0);
+    await tester.tap(find.text(t.none));
     await tester.pumpAndSettle();
+    expect(effort(0, 4), isNull);
+    expect(SessionSet.fromJson(sets[4].toJson()).skipRpePrefill, isTrue);
+    fit.toggleSet(0, 4);
+    expect(sets[4].rpe, isNull, reason: 'clearing a prefill keeps the set unrated');
 
     fit.goToExercise(1);
     await tester.pumpAndSettle();
@@ -152,6 +167,32 @@ void main() {
     expect(sets[0].rpe, isNull);
     fit.saveAndExit();
     await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  test('prefill uses only the immediately preceding completed working set in the block', () {
+    fit.setEffortMode('rir');
+    fit.toggleStartCountdown();
+    fit.setRestSeconds(0);
+    const bench = 'EIeI8Vf';
+    fit.startRoutine(Routine('effort-qa', 'Effort', [bench], sets: {bench: 4}));
+    final s = fit.session!;
+    final sets = s.exercises.first.sets;
+    s.exercises.add(SessionExercise(bench, 'Bench Press', 'chest', [SessionSet(10, 20, false)], slot: 'other'));
+
+    fit.setSessionRpe(0, 0, 8.5);
+    expect(fit.sessionRpePrefill(0, 1), isNull);
+    fit.toggleSet(0, 0);
+    expect(fit.sessionRpePrefill(0, 1), 8.5);
+    expect(fit.sessionRpePrefill(1, 0), isNull);
+    fit.setSetKind(0, 1, SetKind.warmup);
+    expect(fit.sessionRpePrefill(0, 1), isNull);
+    fit.setSessionRpe(0, 1, 6);
+    fit.toggleSet(0, 1);
+    expect(fit.sessionRpePrefill(0, 2), isNull);
+    fit.toggleSet(0, 2);
+    expect(fit.sessionRpePrefill(0, 3), isNull);
+    expect(sets[2].rpe, isNull);
+    fit.saveAndExit();
   });
 
   testWidgets('finishing the last set waits for effort confirmation before writing history', (tester) async {
